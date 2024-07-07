@@ -7,9 +7,10 @@
 </template>
 
 <script setup lang="ts">
+import mapJson from "../assets/china.json";
+
 import echarts, { ECOption } from "@/components/ECharts/config";
 import ECharts from "@/components/ECharts/index.vue";
-import mapJson from "../assets/china.json";
 
 echarts.registerMap("china", mapJson as Parameters<typeof echarts.registerMap>[1]);
 
@@ -22,92 +23,92 @@ const data = [
     toName: "上海",
     coords: [
       [116.4551, 40.2539],
-      [121.4648, 31.2891]
-    ]
+      [121.4648, 31.2891],
+    ],
   },
   {
     fromName: "上海",
     toName: "北京",
     coords: [
       [121.4648, 31.2891],
-      [116.4551, 40.2539]
-    ]
+      [116.4551, 40.2539],
+    ],
   },
   {
     fromName: "北京",
     toName: "广州",
     coords: [
       [116.4551, 40.2539],
-      [113.5107, 23.2196]
-    ]
+      [113.5107, 23.2196],
+    ],
   },
   {
     fromName: "广州",
     toName: "北京",
     coords: [
       [113.5107, 23.2196],
-      [116.4551, 40.2539]
-    ]
+      [116.4551, 40.2539],
+    ],
   },
   {
     fromName: "北京",
     toName: "成都",
     coords: [
       [116.4551, 40.2539],
-      [103.9526, 30.7617]
-    ]
+      [103.9526, 30.7617],
+    ],
   },
   {
     fromName: "成都",
     toName: "北京",
     coords: [
       [103.9526, 30.7617],
-      [116.4551, 40.2539]
-    ]
+      [116.4551, 40.2539],
+    ],
   },
   {
     fromName: "成都",
     toName: "新疆维吾尔自治区",
     coords: [
       [103.9526, 30.7617],
-      [85.294711, 41.371801]
-    ]
+      [85.294711, 41.371801],
+    ],
   },
   {
     fromName: " 新疆维吾尔自治区",
     toName: "成都",
     coords: [
       [85.294711, 41.371801],
-      [103.9526, 30.7617]
-    ]
-  }
+      [103.9526, 30.7617],
+    ],
+  },
 ];
 
 const option: ECOption = {
   tooltip: {
-    trigger: "item"
+    trigger: "item",
   },
   grid: {
     left: "0px",
     right: "80px",
     top: "10px",
-    bottom: "10px"
+    bottom: "10px",
   },
   geo: {
     map: "china",
     zoom: 1.5,
     center: [102.848234, 32.82333],
     scaleLimit: {
-      min: 0.8
+      min: 0.8,
     },
     label: {
       color: "#fff",
-      show: true
+      show: true,
     },
     emphasis: {
       label: {
         color: "#fff",
-        show: true
+        show: true,
       },
       itemStyle: {
         areaColor: {
@@ -117,10 +118,10 @@ const option: ECOption = {
           y2: 1,
           colorStops: [
             { offset: 0, color: "#073684" },
-            { offset: 1, color: "#2B91B7" }
-          ]
-        }
-      }
+            { offset: 1, color: "#2B91B7" },
+          ],
+        },
+      },
     },
     roam: false,
     itemStyle: {
@@ -131,8 +132,8 @@ const option: ECOption = {
         y2: 1,
         colorStops: [
           { offset: 0, color: "#073684" },
-          { offset: 1, color: "#061E3D" }
-        ]
+          { offset: 1, color: "#061E3D" },
+        ],
       },
       borderColor: new echarts.graphic.LinearGradient(
         0,
@@ -141,18 +142,18 @@ const option: ECOption = {
         1,
         [
           { offset: 0, color: "#00F6FF" },
-          { offset: 1, color: "#87ADCB" }
+          { offset: 1, color: "#87ADCB" },
         ],
-        false
+        false,
       ),
       shadowColor: "rgba(10,76,139,1)",
       shadowOffsetY: 0,
       shadowBlur: 60,
-      borderWidth: 1
+      borderWidth: 1,
     },
     tooltip: {
-      show: false
-    }
+      show: false,
+    },
   },
   series: [
     {
@@ -165,14 +166,14 @@ const option: ECOption = {
         period: 6,
         trailLength: 0.7,
         color: "red",
-        symbolSize: 3
+        symbolSize: 3,
       },
       lineStyle: {
         color: "#fff",
         width: 0,
-        curveness: 0.2
+        curveness: 0.2,
       },
-      data
+      data,
     },
     {
       name: "",
@@ -186,17 +187,17 @@ const option: ECOption = {
         period: 6,
         trailLength: 0,
         symbol: planePath,
-        symbolSize: 15
+        symbolSize: 15,
       },
       lineStyle: {
         color: "#fff",
         width: 1,
         opacity: 0.6,
-        curveness: 0.2
+        curveness: 0.2,
       },
-      data
-    }
-  ]
+      data,
+    },
+  ],
 };
 </script>
 

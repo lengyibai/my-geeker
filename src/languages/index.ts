@@ -1,8 +1,9 @@
 import { createI18n } from "vue-i18n";
-import { getBrowserLang } from "@/utils";
 
 import zh from "./modules/zh";
 import en from "./modules/en";
+
+import { getBrowserLang } from "@/utils";
 
 const i18n = createI18n({
   // Use Composition API, Set to false
@@ -11,8 +12,8 @@ const i18n = createI18n({
   locale: getBrowserLang(),
   messages: {
     zh,
-    en
-  }
+    en,
+  },
 });
 
 export default i18n;

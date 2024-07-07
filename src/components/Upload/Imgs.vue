@@ -39,16 +39,21 @@
     <div class="el-upload__tip">
       <slot name="tip"></slot>
     </div>
-    <el-image-viewer v-if="imgViewVisible" :url-list="[viewImageUrl]" @close="imgViewVisible = false" />
+    <el-image-viewer
+      v-if="imgViewVisible"
+      :url-list="[viewImageUrl]"
+      @close="imgViewVisible = false"
+    />
   </div>
 </template>
 
 <script setup lang="ts" name="UploadImgs">
 import { ref, computed, inject, watch } from "vue";
 import { Plus } from "@element-plus/icons-vue";
-import { uploadImg } from "@/api/modules/upload";
 import type { UploadProps, UploadFile, UploadUserFile, UploadRequestOptions } from "element-plus";
 import { ElNotification, formContextKey, formItemContextKey } from "element-plus";
+
+import { uploadImg } from "@/api/modules/upload";
 
 interface UploadFileProps {
   fileList: UploadUserFile[];
@@ -72,7 +77,7 @@ const props = withDefaults(defineProps<UploadFileProps>(), {
   fileType: () => ["image/jpeg", "image/png", "image/gif"],
   height: "150px",
   width: "150px",
-  borderRadius: "8px"
+  borderRadius: "8px",
 });
 
 // 获取 el-form 组件上下文
@@ -91,28 +96,28 @@ watch(
   () => props.fileList,
   (n: UploadUserFile[]) => {
     _fileList.value = n;
-  }
+  },
 );
 
 /**
  * @description 文件上传之前判断
  * @param rawFile 选择的文件
  * */
-const beforeUpload: UploadProps["beforeUpload"] = rawFile => {
+const beforeUpload: UploadProps["beforeUpload"] = (rawFile) => {
   const imgSize = rawFile.size / 1024 / 1024 < props.fileSize;
   const imgType = props.fileType.includes(rawFile.type as File.ImageMimeType);
   if (!imgType)
     ElNotification({
       title: "温馨提示",
       message: "上传图片不符合所需的格式！",
-      type: "warning"
+      type: "warning",
     });
   if (!imgSize)
     setTimeout(() => {
       ElNotification({
         title: "温馨提示",
         message: `上传图片大小不能超过 ${props.fileSize}M！`,
-        type: "warning"
+        type: "warning",
       });
     }, 0);
   return imgType && imgSize;
@@ -123,7 +128,7 @@ const beforeUpload: UploadProps["beforeUpload"] = rawFile => {
  * @param options upload 所有配置项
  * */
 const handleHttpUpload = async (options: UploadRequestOptions) => {
-  let formData = new FormData();
+  const formData = new FormData();
   formData.append("file", options.file);
   try {
     const api = props.api ?? uploadImg;
@@ -151,7 +156,7 @@ const uploadSuccess = (response: { fileUrl: string } | undefined, uploadFile: Up
   ElNotification({
     title: "温馨提示",
     message: "图片上传成功！",
-    type: "success"
+    type: "success",
   });
 };
 
@@ -160,7 +165,9 @@ const uploadSuccess = (response: { fileUrl: string } | undefined, uploadFile: Up
  * @param file 删除的文件
  * */
 const handleRemove = (file: UploadFile) => {
-  _fileList.value = _fileList.value.filter(item => item.url !== file.url || item.name !== file.name);
+  _fileList.value = _fileList.value.filter(
+    (item) => item.url !== file.url || item.name !== file.name,
+  );
   emit("update:fileList", _fileList.value);
 };
 
@@ -171,7 +178,7 @@ const uploadError = () => {
   ElNotification({
     title: "温馨提示",
     message: "图片上传失败，请您重新上传！",
-    type: "error"
+    type: "error",
   });
 };
 
@@ -182,7 +189,7 @@ const handleExceed = () => {
   ElNotification({
     title: "温馨提示",
     message: `当前最多只能上传 ${props.limit} 张图片，请移除后上传！`,
-    type: "warning"
+    type: "warning",
   });
 };
 
@@ -192,7 +199,7 @@ const handleExceed = () => {
  * */
 const viewImageUrl = ref("");
 const imgViewVisible = ref(false);
-const handlePictureCardPreview: UploadProps["onPreview"] = file => {
+const handlePictureCardPreview: UploadProps["onPreview"] = (file) => {
   viewImageUrl.value = file.url!;
   imgViewVisible.value = true;
 };

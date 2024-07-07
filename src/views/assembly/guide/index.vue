@@ -27,66 +27,66 @@ const driverObj = driver({
       popover: {
         title: "Collapse Icon",
         description: "Open && Close sidebar",
-        side: "right"
-      }
+        side: "right",
+      },
     },
     {
       element: "#breadcrumb",
       popover: {
         title: "Breadcrumb",
         description: "Indicate the current page location",
-        side: "right"
-      }
+        side: "right",
+      },
     },
     {
       element: "#assemblySize",
       popover: {
         title: "Switch Assembly Size",
         description: "Switch the system size",
-        side: "left"
-      }
+        side: "left",
+      },
     },
     {
       element: "#language",
       popover: {
         title: "Switch Language",
         description: "Switch the system language",
-        side: "left"
-      }
+        side: "left",
+      },
     },
     {
       element: "#searchMenu",
       popover: {
         title: "Page Search",
         description: "Page search, quick navigation",
-        side: "left"
-      }
+        side: "left",
+      },
     },
     {
       element: "#themeSetting",
       popover: {
         title: "Setting theme",
         description: "Customize settings theme",
-        side: "left"
-      }
+        side: "left",
+      },
     },
     {
       element: "#message",
       popover: {
         title: "Message Notification",
         description: "Can receive company information",
-        side: "left"
-      }
+        side: "left",
+      },
     },
     {
       element: "#fullscreen",
       popover: {
         title: "Full Screen",
         description: "Full Screen, Exit The Full Screen Page",
-        side: "left"
-      }
-    }
-  ]
+        side: "left",
+      },
+    },
+  ],
 });
 </script>
 

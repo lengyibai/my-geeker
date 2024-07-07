@@ -1,5 +1,8 @@
 import { createApp } from "vue";
+
+// eslint-disable-next-line import/order
 import App from "./App.vue";
+
 // reset style sheet
 import "@/styles/reset.scss";
 // CSS common style sheet
@@ -22,6 +25,7 @@ import "virtual:svg-icons-register";
 import ElementPlus from "element-plus";
 // element icons
 import * as Icons from "@element-plus/icons-vue";
+
 // custom directives
 import directives from "@/directives/index";
 // vue Router

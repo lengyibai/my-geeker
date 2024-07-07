@@ -1,6 +1,7 @@
 import { VNode, ComponentPublicInstance, Ref } from "vue";
-import { BreakPoint, Responsive } from "@/components/Grid/interface";
 import { TableColumnCtx } from "element-plus/es/components/table/src/table-column/defaults";
+
+import { BreakPoint, Responsive } from "@/components/Grid/interface";
 import { ProTableProps } from "@/components/ProTable/index.vue";
 import ProTable from "@/components/ProTable/index.vue";
 
@@ -83,4 +84,7 @@ export interface ColumnProps<T = any>
   _children?: ColumnProps<T>[]; // 多级表头
 }
 
-export type ProTableInstance = Omit<InstanceType<typeof ProTable>, keyof ComponentPublicInstance | keyof ProTableProps>;
+export type ProTableInstance = Omit<
+  InstanceType<typeof ProTable>,
+  keyof ComponentPublicInstance | keyof ProTableProps
+>;

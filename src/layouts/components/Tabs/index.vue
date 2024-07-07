@@ -2,7 +2,13 @@
   <div class="tabs-box">
     <div class="tabs-menu">
       <el-tabs v-model="tabsMenuValue" type="card" @tab-click="tabClick" @tab-remove="tabRemove">
-        <el-tab-pane v-for="item in tabsMenuList" :key="item.path" :label="item.title" :name="item.path" :closable="item.close">
+        <el-tab-pane
+          v-for="item in tabsMenuList"
+          :key="item.path"
+          :label="item.title"
+          :name="item.path"
+          :closable="item.close"
+        >
           <template #label>
             <el-icon v-if="item.icon && tabsIcon" class="tabs-icon">
               <component :is="item.icon"></component>
@@ -20,11 +26,13 @@
 import Sortable from "sortablejs";
 import { ref, computed, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { TabsPaneContext, TabPaneName } from "element-plus";
+
+import MoreButton from "./components/MoreButton.vue";
+
 import { useGlobalStore } from "@/stores/modules/global";
 import { useTabsStore } from "@/stores/modules/tabs";
 import { useAuthStore } from "@/stores/modules/auth";
-import { TabsPaneContext, TabPaneName } from "element-plus";
-import MoreButton from "./components/MoreButton.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -53,16 +61,16 @@ watch(
       path: route.fullPath,
       name: route.name as string,
       close: !route.meta.isAffix,
-      isKeepAlive: route.meta.isKeepAlive as boolean
+      isKeepAlive: route.meta.isKeepAlive as boolean,
     };
     tabStore.addTabs(tabsParams);
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 // 初始化需要固定的 tabs
 const initTabs = () => {
-  authStore.flatMenuListGet.forEach(item => {
+  authStore.flatMenuListGet.forEach((item) => {
     if (item.meta.isAffix && !item.meta.isHide && !item.meta.isFull) {
       const tabsParams = {
         icon: item.meta.icon,
@@ -70,7 +78,7 @@ const initTabs = () => {
         path: item.path,
         name: item.name,
         close: !item.meta.isAffix,
-        isKeepAlive: item.meta.isKeepAlive
+        isKeepAlive: item.meta.isKeepAlive,
       };
       tabStore.addTabs(tabsParams);
     }
@@ -87,7 +95,7 @@ const tabsDrop = () => {
       const currRow = tabsList.splice(oldIndex as number, 1)[0];
       tabsList.splice(newIndex as number, 0, currRow);
       tabStore.setTabs(tabsList);
-    }
+    },
   });
 };
 
@@ -99,10 +107,10 @@ const tabClick = (tabItem: TabsPaneContext) => {
 
 // Remove Tab
 const tabRemove = (fullPath: TabPaneName) => {
-  tabStore.removeTabs(fullPath as string, fullPath == route.fullPath);
+  tabStore.removeTabs(fullPath as string, fullPath === route.fullPath);
 };
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
+@import url("./index.scss");
 </style>

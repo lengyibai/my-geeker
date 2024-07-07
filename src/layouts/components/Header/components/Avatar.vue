@@ -25,13 +25,15 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { LOGIN_URL } from "@/config";
 import { useRouter } from "vue-router";
-import { logoutApi } from "@/api/modules/login";
-import { useUserStore } from "@/stores/modules/user";
 import { ElMessageBox, ElMessage } from "element-plus";
+
 import InfoDialog from "./InfoDialog.vue";
 import PasswordDialog from "./PasswordDialog.vue";
+
+import { useUserStore } from "@/stores/modules/user";
+import { logoutApi } from "@/api/modules/login";
+import { LOGIN_URL } from "@/config";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -41,7 +43,7 @@ const logout = () => {
   ElMessageBox.confirm("您是否确认退出登录?", "温馨提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
-    type: "warning"
+    type: "warning",
   }).then(async () => {
     // 1.执行退出登录接口
     await logoutApi();
@@ -59,18 +61,19 @@ const logout = () => {
 const infoRef = ref<InstanceType<typeof InfoDialog> | null>(null);
 const passwordRef = ref<InstanceType<typeof PasswordDialog> | null>(null);
 const openDialog = (ref: string) => {
-  if (ref == "infoRef") infoRef.value?.openDialog();
-  if (ref == "passwordRef") passwordRef.value?.openDialog();
+  if (ref === "infoRef") infoRef.value?.openDialog();
+  if (ref === "passwordRef") passwordRef.value?.openDialog();
 };
 </script>
 
 <style scoped lang="scss">
 .avatar {
+  overflow: hidden;
   width: 40px;
   height: 40px;
-  overflow: hidden;
-  cursor: pointer;
   border-radius: 50%;
+  cursor: pointer;
+
   img {
     width: 100%;
     height: 100%;

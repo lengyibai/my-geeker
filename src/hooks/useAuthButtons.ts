@@ -1,5 +1,6 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+
 import { useAuthStore } from "@/stores/modules/auth";
 
 /**
@@ -11,12 +12,12 @@ export const useAuthButtons = () => {
   const authButtons = authStore.authButtonListGet[route.name as string] || [];
 
   const BUTTONS = computed(() => {
-    let currentPageAuthButton: { [key: string]: boolean } = {};
-    authButtons.forEach(item => (currentPageAuthButton[item] = true));
+    const currentPageAuthButton: { [key: string]: boolean } = {};
+    authButtons.forEach((item) => (currentPageAuthButton[item] = true));
     return currentPageAuthButton;
   });
 
   return {
-    BUTTONS
+    BUTTONS,
   };
 };

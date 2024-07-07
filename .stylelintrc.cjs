@@ -12,6 +12,7 @@ module.exports = {
     },
   ],
   rules: {
+    "import-notation": null, //禁止使用@import规则
     "no-invalid-double-slash-comments": null, //禁止使用双斜线注释
     "selector-class-pattern": null, //必须使用中划线命名
     "font-family-no-missing-generic-family-keyword": null, //禁止在字体族名称中使用缺少的通用系列关键字

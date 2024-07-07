@@ -1,6 +1,6 @@
 <template>
   <div class="dataScreen-container">
-    <div class="dataScreen-content" ref="dataScreenRef">
+    <div ref="dataScreenRef" class="dataScreen-content">
       <div class="dataScreen-header">
         <div class="header-lf">
           <span class="header-screening" @click="router.push(HOME_URL)">首页</span>
@@ -111,8 +111,9 @@
 
 <script setup lang="ts" name="dataScreen">
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import { HOME_URL } from "@/config";
 import { useRouter } from "vue-router";
+import dayjs from "dayjs";
+
 import AgeRatioChart from "./components/AgeRatioChart.vue";
 import AnnualUseChart from "./components/AnnualUseChart.vue";
 import ChinaMapChart from "./components/ChinaMapChart.vue";
@@ -121,7 +122,8 @@ import MaleFemaleRatioChart from "./components/MaleFemaleRatioChart.vue";
 import OverNext30Chart from "./components/OverNext30Chart.vue";
 import PlatformSourceChart from "./components/PlatformSourceChart.vue";
 import RealTimeAccessChart from "./components/RealTimeAccessChart.vue";
-import dayjs from "dayjs";
+
+import { HOME_URL } from "@/config";
 
 const router = useRouter();
 const dataScreenRef = ref<HTMLElement | null>(null);
@@ -144,14 +146,14 @@ const resize = () => {
 
 // 根据浏览器大小推断缩放比例
 const getScale = (width = 1920, height = 1080) => {
-  let ww = window.innerWidth / width;
-  let wh = window.innerHeight / height;
+  const ww = window.innerWidth / width;
+  const wh = window.innerHeight / height;
   return ww < wh ? ww : wh;
 };
 
 // 获取当前时间
 let timer: NodeJS.Timer | null = null;
-let time = ref<string>(dayjs().format("YYYY年MM月DD HH:mm:ss"));
+const time = ref<string>(dayjs().format("YYYY年MM月DD HH:mm:ss"));
 timer = setInterval(() => {
   time.value = dayjs().format("YYYY年MM月DD HH:mm:ss");
 }, 1000);

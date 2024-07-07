@@ -14,9 +14,17 @@
     >
       <!-- 表格 header 按钮 -->
       <template #tableHeader="scope">
-        <el-button type="primary" :icon="CirclePlus" @click="proTable?.element?.toggleAllSelection">全选 / 全不选</el-button>
+        <el-button type="primary" :icon="CirclePlus" @click="proTable?.element?.toggleAllSelection"
+          >全选 / 全不选</el-button
+        >
         <el-button type="primary" :icon="Pointer" plain @click="setCurrent">选中第五行</el-button>
-        <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
+        <el-button
+          type="danger"
+          :icon="Delete"
+          plain
+          :disabled="!scope.isSelected"
+          @click="batchDelete(scope.selectedListIds)"
+        >
           批量删除用户
         </el-button>
       </template>
@@ -26,11 +34,17 @@
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
-        <el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)">重置密码</el-button>
-        <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
+        <el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)"
+          >重置密码</el-button
+        >
+        <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)"
+          >删除</el-button
+        >
       </template>
       <template #append>
-        <span style="color: var(--el-color-primary)">我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
+        <span style="color: var(--el-color-primary)"
+          >我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span
+        >
       </template>
     </ProTable>
   </div>
@@ -45,7 +59,13 @@ import ProTable from "@/components/ProTable/index.vue";
 import { CirclePlus, Pointer, Delete, Refresh } from "@element-plus/icons-vue";
 import type { TableColumnCtx } from "element-plus/es/components/table/src/table-column/defaults";
 import { ProTableInstance, ColumnProps, HeaderRenderScope } from "@/components/ProTable/interface";
-import { getUserList, deleteUser, resetUserPassWord, getUserStatus, getUserGender } from "@/api/modules/user";
+import {
+  getUserList,
+  deleteUser,
+  resetUserPassWord,
+  getUserStatus,
+  getUserGender,
+} from "@/api/modules/user";
 
 // ProTable 实例
 const proTable = ref<ProTableInstance>();
@@ -76,7 +96,7 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
         label: "性别",
         width: 100,
         enum: getUserGender,
-        fieldNames: { label: "genderLabel", value: "genderValue" }
+        fieldNames: { label: "genderLabel", value: "genderValue" },
       },
       {
         prop: "details",
@@ -84,20 +104,20 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
         _children: [
           { prop: "idCard", label: "身份证号" },
           { prop: "email", label: "邮箱" },
-          { prop: "address", label: "居住地址" }
-        ]
-      }
-    ]
+          { prop: "address", label: "居住地址" },
+        ],
+      },
+    ],
   },
   {
     prop: "status",
     label: "用户状态",
     tag: true,
     enum: getUserStatus,
-    fieldNames: { label: "userLabel", value: "userStatus" }
+    fieldNames: { label: "userLabel", value: "userStatus" },
   },
   { prop: "createTime", label: "创建时间", width: 200 },
-  { prop: "operation", label: "操作", fixed: "right", width: 230 }
+  { prop: "operation", label: "操作", fixed: "right", width: 230 },
 ]);
 
 // 选择行
@@ -144,7 +164,7 @@ const tableRowClassName = ({ rowIndex }: { row: User.ResUserList; rowIndex: numb
 
 // 单击行
 const rowClick = (row: User.ResUserList, column: TableColumnCtx<User.ResUserList>) => {
-  if (column.property == "radio" || column.property == "operation") return;
+  if (column.property === "radio" || column.property === "operation") return;
   console.log(row);
   ElMessage.success("当前行被点击了！");
 };
@@ -175,6 +195,7 @@ const resetPass = async (params: User.ResUserList) => {
 .el-table .warning-row .el-table-fixed-column--left {
   background-color: var(--el-color-warning-light-9);
 }
+
 .el-table .success-row,
 .el-table .success-row .el-table-fixed-column--right,
 .el-table .success-row .el-table-fixed-column--left {

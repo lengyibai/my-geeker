@@ -19,7 +19,7 @@
 import { ref } from "vue";
 import draggable from "vuedraggable";
 
-let gridList = ref([
+const gridList = ref([
   { id: 1, num: 1 },
   { id: 2, num: 2 },
   { id: 3, num: 3 },
@@ -28,7 +28,7 @@ let gridList = ref([
   { id: 6, num: 6 },
   { id: 7, num: 7 },
   { id: 8, num: 8 },
-  { id: 9, num: 9 }
+  { id: 9, num: 9 },
 ]);
 </script>
 

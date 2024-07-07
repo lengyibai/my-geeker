@@ -1,16 +1,22 @@
 <template>
   <div class="search-menu">
     <i :class="'iconfont icon-sousuo'" class="toolBar-icon" @click="handleOpen"></i>
-    <el-dialog class="search-dialog" v-model="isShowSearch" :width="600" :show-close="false" top="10vh">
+    <el-dialog
+      v-model="isShowSearch"
+      class="search-dialog"
+      :width="600"
+      :show-close="false"
+      top="10vh"
+    >
       <el-input
-        v-model="searchMenu"
         ref="menuInputRef"
+        v-model="searchMenu"
         placeholder="菜单搜索：支持菜单名称、路径"
         size="large"
         clearable
         :prefix-icon="Search"
       ></el-input>
-      <div v-if="searchList.length" class="menu-list" ref="menuListRef">
+      <div v-if="searchList.length" ref="menuListRef" class="menu-list">
         <div
           v-for="item in searchList"
           :key="item.path"
@@ -36,13 +42,14 @@
 import { ref, computed, nextTick, watch, onMounted, onUnmounted } from "vue";
 import { InputInstance } from "element-plus";
 import { Search } from "@element-plus/icons-vue";
-import { useAuthStore } from "@/stores/modules/auth";
 import { useRouter } from "vue-router";
 import { useDebounceFn } from "@vueuse/core";
 
+import { useAuthStore } from "@/stores/modules/auth";
+
 const router = useRouter();
 const authStore = useAuthStore();
-const menuList = computed(() => authStore.flatMenuListGet.filter(item => !item.meta.isHide));
+const menuList = computed(() => authStore.flatMenuListGet.filter((item) => !item.meta.isHide));
 
 onMounted(() => {
   document.addEventListener("keydown", keyboardOperation);
@@ -73,10 +80,10 @@ const searchList = ref<Menu.MenuOptions[]>([]);
 const updateSearchList = () => {
   searchList.value = searchMenu.value
     ? menuList.value.filter(
-        item =>
+        (item) =>
           (item.path.toLowerCase().includes(searchMenu.value.toLowerCase()) ||
             item.meta.title.toLowerCase().includes(searchMenu.value.toLowerCase())) &&
-          !item.meta?.isHide
+          !item.meta?.isHide,
       )
     : [];
   activePath.value = searchList.value.length ? searchList.value[0].path : "";
@@ -90,7 +97,7 @@ const menuListRef = ref<Element | null>(null);
 const keyPressUpOrDown = (direction: number) => {
   const length = searchList.value.length;
   if (length === 0) return;
-  const index = searchList.value.findIndex(item => item.path === activePath.value);
+  const index = searchList.value.findIndex((item) => item.path === activePath.value);
   const newIndex = (index + direction + length) % length;
   activePath.value = searchList.value[newIndex].path;
   nextTick(() => {
@@ -114,7 +121,7 @@ const keyboardOperation = (event: KeyboardEvent) => {
 };
 
 const handleClickMenu = () => {
-  const menu = searchList.value.find(item => item.path === activePath.value);
+  const menu = searchList.value.find((item) => item.path === activePath.value);
   if (!menu) return;
   if (menu.meta?.isLink) window.open(menu.meta.isLink, "_blank");
   else router.push(menu.path);

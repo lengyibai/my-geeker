@@ -1,6 +1,6 @@
 export default {
   home: {
-    welcome: "Welcome"
+    welcome: "Welcome",
   },
   tabs: {
     refresh: "Refresh",
@@ -9,7 +9,7 @@ export default {
     closeLeft: "Close Left",
     closeRight: "Close Right",
     closeOther: "Close other",
-    closeAll: "Close All"
+    closeAll: "Close All",
   },
   header: {
     componentSize: "Component size",
@@ -24,6 +24,6 @@ export default {
     exitFullScreen: "Exit Full Screen",
     personalData: "Personal Data",
     changePassword: "Change Password",
-    logout: "Logout"
-  }
+    logout: "Logout",
+  },
 };

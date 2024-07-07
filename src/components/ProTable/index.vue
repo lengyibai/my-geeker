@@ -16,12 +16,27 @@
     <!-- 表格头部 操作按钮 -->
     <div class="table-header">
       <div class="header-button-lf">
-        <slot name="tableHeader" :selected-list="selectedList" :selected-list-ids="selectedListIds" :is-selected="isSelected" />
+        <slot
+          name="tableHeader"
+          :selected-list="selectedList"
+          :selected-list-ids="selectedListIds"
+          :is-selected="isSelected"
+        />
       </div>
       <div v-if="toolButton" class="header-button-ri">
         <slot name="toolButton">
-          <el-button v-if="showToolButton('refresh')" :icon="Refresh" circle @click="getTableList" />
-          <el-button v-if="showToolButton('setting') && columns.length" :icon="Operation" circle @click="openColSetting" />
+          <el-button
+            v-if="showToolButton('refresh')"
+            :icon="Refresh"
+            circle
+            @click="getTableList"
+          />
+          <el-button
+            v-if="showToolButton('setting') && columns.length"
+            :icon="Operation"
+            circle
+            @click="openColSetting"
+          />
           <el-button
             v-if="showToolButton('search') && searchColumns?.length"
             :icon="Search"
@@ -33,9 +48,9 @@
     </div>
     <!-- 表格主体 -->
     <el-table
-      ref="tableRef"
       v-bind="$attrs"
       :id="uuid"
+      ref="tableRef"
       :data="processTableData"
       :border="border"
       :row-key="rowKey"
@@ -49,20 +64,20 @@
           v-if="item.type && columnTypes.includes(item.type)"
           v-bind="item"
           :align="item.align ?? 'center'"
-          :reserve-selection="item.type == 'selection'"
+          :reserve-selection="item.type === 'selection'"
         >
           <template #default="scope">
             <!-- expand -->
-            <template v-if="item.type == 'expand'">
+            <template v-if="item.type === 'expand'">
               <component :is="item.render" v-bind="scope" v-if="item.render" />
               <slot v-else :name="item.type" v-bind="scope" />
             </template>
             <!-- radio -->
-            <el-radio v-if="item.type == 'radio'" v-model="radio" :label="scope.row[rowKey]">
+            <el-radio v-if="item.type === 'radio'" v-model="radio" :label="scope.row[rowKey]">
               <i></i>
             </el-radio>
             <!-- sort -->
-            <el-tag v-if="item.type == 'sort'" class="move">
+            <el-tag v-if="item.type === 'sort'" class="move">
               <el-icon> <DCaret /></el-icon>
             </el-tag>
           </template>
@@ -105,17 +120,19 @@
 <script setup lang="ts" name="ProTable">
 import { ref, watch, provide, onMounted, unref, computed, reactive } from "vue";
 import { ElTable } from "element-plus";
+import { Refresh, Operation, Search } from "@element-plus/icons-vue";
+import Sortable from "sortablejs";
+
+import Pagination from "./components/Pagination.vue";
+import ColSetting from "./components/ColSetting.vue";
+import TableColumn from "./components/TableColumn.vue";
+
 import { useTable } from "@/hooks/useTable";
 import { useSelection } from "@/hooks/useSelection";
 import { BreakPoint } from "@/components/Grid/interface";
 import { ColumnProps, TypeProps } from "@/components/ProTable/interface";
-import { Refresh, Operation, Search } from "@element-plus/icons-vue";
 import { generateUUID, handleProp } from "@/utils";
 import SearchForm from "@/components/SearchForm/index.vue";
-import Pagination from "./components/Pagination.vue";
-import ColSetting from "./components/ColSetting.vue";
-import TableColumn from "./components/TableColumn.vue";
-import Sortable from "sortablejs";
 
 export interface ProTableProps {
   columns: ColumnProps[]; // 列配置项  ==> 必传
@@ -142,7 +159,7 @@ const props = withDefaults(defineProps<ProTableProps>(), {
   border: true,
   toolButton: true,
   rowKey: "id",
-  searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
+  searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }),
 });
 
 // table 实例
@@ -169,8 +186,23 @@ const radio = ref("");
 const { selectionChange, selectedList, selectedListIds, isSelected } = useSelection(props.rowKey);
 
 // 表格操作 Hooks
-const { tableData, pageable, searchParam, searchInitParam, getTableList, search, reset, handleSizeChange, handleCurrentChange } =
-  useTable(props.requestApi, props.initParam, props.pagination, props.dataCallback, props.requestError);
+const {
+  tableData,
+  pageable,
+  searchParam,
+  searchInitParam,
+  getTableList,
+  search,
+  reset,
+  handleSizeChange,
+  handleCurrentChange,
+} = useTable(
+  props.requestApi,
+  props.initParam,
+  props.pagination,
+  props.dataCallback,
+  props.requestError,
+);
 
 // 清空选中数据列表
 const clearSelection = () => tableRef.value!.clearSelection();
@@ -188,7 +220,7 @@ const processTableData = computed(() => {
   if (!props.pagination) return props.data;
   return props.data.slice(
     (pageable.value.pageNum - 1) * pageable.value.pageSize,
-    pageable.value.pageSize * pageable.value.pageNum
+    pageable.value.pageSize * pageable.value.pageNum,
   );
 });
 
@@ -207,7 +239,11 @@ const setEnumMap = async ({ prop, enum: enumValue }: ColumnProps) => {
   if (!enumValue) return;
 
   // 如果当前 enumMap 存在相同的值 return
-  if (enumMap.value.has(prop!) && (typeof enumValue === "function" || enumMap.value.get(prop!) === enumValue)) return;
+  if (
+    enumMap.value.has(prop!) &&
+    (typeof enumValue === "function" || enumMap.value.get(prop!) === enumValue)
+  )
+    return;
 
   // 当前 enum 为静态数据，则直接存储到 enumMap
   if (typeof enumValue !== "function") return enumMap.value.set(prop!, unref(enumValue!));
@@ -225,7 +261,7 @@ provide("enumMap", enumMap);
 
 // 扁平化 columns 的方法
 const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) => {
-  columns.forEach(async col => {
+  columns.forEach(async (col) => {
     if (col._children?.length) flatArr.push(...flatColumnsFunc(col._children));
     flatArr.push(col);
 
@@ -237,13 +273,13 @@ const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) =>
     // 设置 enumMap
     await setEnumMap(col);
   });
-  return flatArr.filter(item => !item._children?.length);
+  return flatArr.filter((item) => !item._children?.length);
 };
 
 // 过滤需要搜索的配置项 && 排序
 const searchColumns = computed(() => {
   return flatColumns.value
-    ?.filter(item => item.search?.el || item.search?.render)
+    ?.filter((item) => item.search?.el || item.search?.render)
     .sort((a, b) => a.search!.order! - b.search!.order!);
 });
 
@@ -260,7 +296,7 @@ searchColumns.value?.forEach((column, index) => {
 
 // 列设置 ==> 需要过滤掉不需要设置的列
 const colRef = ref();
-const colSetting = tableColumns!.filter(item => {
+const colSetting = tableColumns!.filter((item) => {
   const { type, prop, isSetting } = item;
   return !columnTypes.includes(type!) && prop !== "operation" && isSetting;
 });
@@ -293,7 +329,7 @@ const dragSort = () => {
       const [removedItem] = processTableData.value.splice(oldIndex!, 1);
       processTableData.value.splice(newIndex!, 0, removedItem);
       emit("dragSort", { newIndex, oldIndex });
-    }
+    },
   });
 };
 
@@ -316,6 +352,6 @@ defineExpose({
   handleSizeChange,
   handleCurrentChange,
   clearSelection,
-  enumMap
+  enumMap,
 });
 </script>

@@ -1,6 +1,12 @@
 <template>
   <div :class="['editor-box', self_disabled ? 'editor-disabled' : '']">
-    <Toolbar v-if="!hideToolBar" class="editor-toolbar" :editor="editorRef" :default-config="toolbarConfig" :mode="mode" />
+    <Toolbar
+      v-if="!hideToolBar"
+      class="editor-toolbar"
+      :editor="editorRef"
+      :default-config="toolbarConfig"
+      :mode="mode"
+    />
     <Editor
       v-model="valueHtml"
       class="editor-content"
@@ -17,7 +23,9 @@
 import { nextTick, computed, inject, shallowRef, onBeforeUnmount } from "vue";
 import { IToolbarConfig, IEditorConfig } from "@wangeditor/editor";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
+
 import { uploadImg, uploadVideo } from "@/api/modules/upload";
+
 import "@wangeditor/editor/dist/css/style.css";
 import { formContextKey, formItemContextKey } from "element-plus";
 
@@ -42,19 +50,19 @@ interface RichEditorProps {
 const props = withDefaults(defineProps<RichEditorProps>(), {
   toolbarConfig: () => {
     return {
-      excludeKeys: []
+      excludeKeys: [],
     };
   },
   editorConfig: () => {
     return {
       placeholder: "请输入内容...",
-      MENU_CONF: {}
+      MENU_CONF: {},
     };
   },
   height: "500px",
   mode: "default",
   hideToolBar: false,
-  disabled: false
+  disabled: false,
 });
 
 // 获取 el-form 组件上下文
@@ -82,7 +90,7 @@ const valueHtml = computed({
     // 防止富文本内容为空时，校验失败
     if (editorRef.value.isEmpty()) val = "";
     emit("update:value", val);
-  }
+  },
 });
 
 /**
@@ -94,7 +102,7 @@ type InsertFnTypeImg = (url: string, alt?: string, href?: string) => void;
 props.editorConfig.MENU_CONF!["uploadImage"] = {
   async customUpload(file: File, insertFn: InsertFnTypeImg) {
     if (!uploadImgValidate(file)) return;
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("file", file);
     try {
       const { data } = await uploadImg(formData);
@@ -102,7 +110,7 @@ props.editorConfig.MENU_CONF!["uploadImage"] = {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
 };
 
 // 图片上传前判断
@@ -120,7 +128,7 @@ type InsertFnTypeVideo = (url: string, poster?: string) => void;
 props.editorConfig.MENU_CONF!["uploadVideo"] = {
   async customUpload(file: File, insertFn: InsertFnTypeVideo) {
     if (!uploadVideoValidate(file)) return;
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("file", file);
     try {
       const { data } = await uploadVideo(formData);
@@ -128,7 +136,7 @@ props.editorConfig.MENU_CONF!["uploadVideo"] = {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
 };
 
 // 视频上传前判断
@@ -149,7 +157,7 @@ onBeforeUnmount(() => {
 });
 
 defineExpose({
-  editor: editorRef
+  editor: editorRef,
 });
 </script>
 

@@ -1,6 +1,8 @@
 import { storeToRefs } from "pinia";
-import { Theme } from "./interface";
 import { ElMessage } from "element-plus";
+
+import { Theme } from "./interface";
+
 import { DEFAULT_PRIMARY } from "@/config";
 import { useGlobalStore } from "@/stores/modules/global";
 import { getLightColor, getDarkColor } from "@/utils/color";
@@ -13,7 +15,8 @@ import { headerTheme } from "@/styles/theme/header";
  * */
 export const useTheme = () => {
   const globalStore = useGlobalStore();
-  const { primary, isDark, isGrey, isWeak, layout, asideInverted, headerInverted } = storeToRefs(globalStore);
+  const { primary, isDark, isGrey, isWeak, layout, asideInverted, headerInverted } =
+    storeToRefs(globalStore);
 
   // 切换暗黑模式 ==> 同时修改主题颜色、侧边栏、头部颜色
   const switchDark = () => {
@@ -35,10 +38,12 @@ export const useTheme = () => {
     document.documentElement.style.setProperty("--el-color-primary", val);
     document.documentElement.style.setProperty(
       "--el-color-primary-dark-2",
-      isDark.value ? `${getLightColor(val, 0.2)}` : `${getDarkColor(val, 0.3)}`
+      isDark.value ? `${getLightColor(val, 0.2)}` : `${getDarkColor(val, 0.3)}`,
     );
     for (let i = 1; i <= 9; i++) {
-      const primaryColor = isDark.value ? `${getDarkColor(val, i / 10)}` : `${getLightColor(val, i / 10)}`;
+      const primaryColor = isDark.value
+        ? `${getDarkColor(val, i / 10)}`
+        : `${getLightColor(val, i / 10)}`;
       document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, primaryColor);
     }
     globalStore.setGlobalState("primary", val);
@@ -50,7 +55,7 @@ export const useTheme = () => {
     if (!value) return body.removeAttribute("style");
     const styles: Record<Theme.GreyOrWeakType, string> = {
       grey: "filter: grayscale(1)",
-      weak: "filter: invert(80%)"
+      weak: "filter: invert(80%)",
     };
     body.setAttribute("style", styles[type]);
     const propName = type === "grey" ? "isWeak" : "isGrey";
@@ -106,6 +111,6 @@ export const useTheme = () => {
     changePrimary,
     changeGreyOrWeak,
     setAsideTheme,
-    setHeaderTheme
+    setHeaderTheme,
   };
 };

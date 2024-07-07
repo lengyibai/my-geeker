@@ -49,10 +49,11 @@
 
 <script setup lang="ts" name="UploadImg">
 import { ref, computed, inject } from "vue";
-import { generateUUID } from "@/utils";
-import { uploadImg } from "@/api/modules/upload";
 import { ElNotification, formContextKey, formItemContextKey } from "element-plus";
 import type { UploadProps, UploadRequestOptions } from "element-plus";
+
+import { generateUUID } from "@/utils";
+import { uploadImg } from "@/api/modules/upload";
 
 interface UploadFileProps {
   imageUrl: string; // 图片地址 ==> 必传
@@ -75,7 +76,7 @@ const props = withDefaults(defineProps<UploadFileProps>(), {
   fileType: () => ["image/jpeg", "image/png", "image/gif"],
   height: "150px",
   width: "150px",
-  borderRadius: "8px"
+  borderRadius: "8px",
 });
 
 // 生成组件唯一id
@@ -100,7 +101,7 @@ const emit = defineEmits<{
   "update:imageUrl": [value: string];
 }>();
 const handleHttpUpload = async (options: UploadRequestOptions) => {
-  let formData = new FormData();
+  const formData = new FormData();
   formData.append("file", options.file);
   try {
     const api = props.api ?? uploadImg;
@@ -132,21 +133,21 @@ const editImg = () => {
  * @description 文件上传之前判断
  * @param rawFile 选择的文件
  * */
-const beforeUpload: UploadProps["beforeUpload"] = rawFile => {
+const beforeUpload: UploadProps["beforeUpload"] = (rawFile) => {
   const imgSize = rawFile.size / 1024 / 1024 < props.fileSize;
   const imgType = props.fileType.includes(rawFile.type as File.ImageMimeType);
   if (!imgType)
     ElNotification({
       title: "温馨提示",
       message: "上传图片不符合所需的格式！",
-      type: "warning"
+      type: "warning",
     });
   if (!imgSize)
     setTimeout(() => {
       ElNotification({
         title: "温馨提示",
         message: `上传图片大小不能超过 ${props.fileSize}M！`,
-        type: "warning"
+        type: "warning",
       });
     }, 0);
   return imgType && imgSize;
@@ -159,7 +160,7 @@ const uploadSuccess = () => {
   ElNotification({
     title: "温馨提示",
     message: "图片上传成功！",
-    type: "success"
+    type: "success",
   });
 };
 
@@ -170,7 +171,7 @@ const uploadError = () => {
   ElNotification({
     title: "温馨提示",
     message: "图片上传失败，请您重新上传！",
-    type: "error"
+    type: "error",
   });
 };
 </script>

@@ -34,7 +34,9 @@ declare namespace File {
     | "image/webp"
     | "image/x-icon";
 
-  type ExcelMimeType = "application/vnd.ms-excel" | "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+  type ExcelMimeType =
+    | "application/vnd.ms-excel"
+    | "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 }
 
 /* Vite */

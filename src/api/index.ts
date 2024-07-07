@@ -1,11 +1,19 @@
-import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, InternalAxiosRequestConfig, AxiosResponse } from "axios";
-import { showFullScreenLoading, tryHideFullScreenLoading } from "@/components/Loading/fullScreen";
-import { LOGIN_URL } from "@/config";
+import axios, {
+  AxiosInstance,
+  AxiosError,
+  AxiosRequestConfig,
+  InternalAxiosRequestConfig,
+  AxiosResponse,
+} from "axios";
 import { ElMessage } from "element-plus";
-import { ResultData } from "@/api/interface";
-import { ResultEnum } from "@/enums/httpEnum";
+
 import { checkStatus } from "./helper/checkStatus";
 import { AxiosCanceler } from "./helper/axiosCancel";
+
+import { showFullScreenLoading, tryHideFullScreenLoading } from "@/components/Loading/fullScreen";
+import { LOGIN_URL } from "@/config";
+import { ResultData } from "@/api/interface";
+import { ResultEnum } from "@/enums/httpEnum";
 import { useUserStore } from "@/stores/modules/user";
 import router from "@/routers";
 
@@ -20,7 +28,7 @@ const config = {
   // 设置超时时间
   timeout: ResultEnum.TIMEOUT as number,
   // 跨域时候允许携带凭证
-  withCredentials: true
+  withCredentials: true,
 };
 
 const axiosCanceler = new AxiosCanceler();
@@ -52,7 +60,7 @@ class RequestHttp {
       },
       (error: AxiosError) => {
         return Promise.reject(error);
-      }
+      },
     );
 
     /**
@@ -67,7 +75,7 @@ class RequestHttp {
         axiosCanceler.removePending(config);
         config.loading && tryHideFullScreenLoading();
         // 登录失效
-        if (data.code == ResultEnum.OVERDUE) {
+        if (data.code === ResultEnum.OVERDUE) {
           userStore.setToken("");
           router.replace(LOGIN_URL);
           ElMessage.error(data.msg);
@@ -86,13 +94,14 @@ class RequestHttp {
         tryHideFullScreenLoading();
         // 请求超时 && 网络错误单独判断，没有 response
         if (error.message.indexOf("timeout") !== -1) ElMessage.error("请求超时！请您稍后重试");
-        if (error.message.indexOf("Network Error") !== -1) ElMessage.error("网络错误！请您稍后重试");
+        if (error.message.indexOf("Network Error") !== -1)
+          ElMessage.error("网络错误！请您稍后重试");
         // 根据服务器响应的错误状态码，做不同的处理
         if (response) checkStatus(response.status);
         // 服务器结果都没有返回(可能服务器错误可能客户端断网)，断网处理:可以跳转到断网页面
         if (!window.navigator.onLine) router.replace("/500");
         return Promise.reject(error);
-      }
+      },
     );
   }
 

@@ -27,21 +27,21 @@ interface ChartProp {
   woman: number;
 }
 
-let data: ChartProp = {
+const data: ChartProp = {
   man: 0.6,
-  woman: 0.4
+  woman: 0.4,
 };
 
 const option: ECOption = {
   xAxis: {
     type: "value",
-    show: false
+    show: false,
   },
   grid: {
     left: 0,
     top: "30px",
     bottom: 0,
-    right: 0
+    right: 0,
   },
   yAxis: [
     {
@@ -49,24 +49,24 @@ const option: ECOption = {
       position: "left",
       data: ["男生"],
       axisTick: {
-        show: false
+        show: false,
       },
       axisLine: {
-        show: false
+        show: false,
       },
       axisLabel: {
-        show: false
-      }
+        show: false,
+      },
     },
     {
       type: "category",
       position: "right",
       data: ["女士"],
       axisTick: {
-        show: false
+        show: false,
       },
       axisLine: {
-        show: false
+        show: false,
       },
       axisLabel: {
         show: false,
@@ -80,11 +80,11 @@ const option: ECOption = {
             color: "transparent",
             lineHeight: 30,
             fontFamily: "digital",
-            fontSize: 12
-          }
-        }
-      }
-    }
+            fontSize: 12,
+          },
+        },
+      },
+    },
   ],
   series: [
     {
@@ -94,7 +94,7 @@ const option: ECOption = {
       z: 20,
       itemStyle: {
         borderRadius: 10,
-        color: "#007AFE"
+        color: "#007AFE",
       },
       label: {
         show: true,
@@ -104,8 +104,8 @@ const option: ECOption = {
         fontSize: 12,
         formatter: () => {
           return `男士 ${data.man * 100}%`;
-        }
-      }
+        },
+      },
     },
     {
       type: "bar",
@@ -114,7 +114,7 @@ const option: ECOption = {
       barGap: "-100%",
       itemStyle: {
         borderRadius: 10,
-        color: "#FF4B7A"
+        color: "#FF4B7A",
       },
       label: {
         show: true,
@@ -124,10 +124,10 @@ const option: ECOption = {
         fontSize: 12,
         formatter: () => {
           return `女士 ${data.woman * 100}%`;
-        }
-      }
-    }
-  ]
+        },
+      },
+    },
+  ],
 };
 </script>
 <style lang="scss" scoped>

@@ -17,7 +17,7 @@ const curveData = [
   { value: 60, spotName: "MyBlog" },
   { value: 55, spotName: "简书" },
   { value: 80, spotName: "StackOverFlow" },
-  { value: 50, spotName: "博客园" }
+  { value: 50, spotName: "博客园" },
 ];
 
 const option: ECOption = {
@@ -25,25 +25,25 @@ const option: ECOption = {
     trigger: "axis",
     backgroundColor: "transparent",
     axisPointer: {
-      type: "none"
+      type: "none",
     },
     padding: 0,
     formatter: (p: any) => {
-      let dom = `<div style="width:100%; height: 70px !important; display:flex;flex-direction: column;justify-content: space-between;padding:10px;box-sizing: border-box;
+      const dom = `<div style="width:100%; height: 70px !important; display:flex;flex-direction: column;justify-content: space-between;padding:10px;box-sizing: border-box;
       color:#fff; background: #6B9DFE;border-radius: 4px;font-size:14px; ">
         <div style="display: flex; align-items: center;"> <div style="width:5px;height:5px;background:#ffffff;border-radius: 50%;margin-right:5px"></div>平台 :  ${p[0].name}</div>
         <div style="display: flex;align-items: center;"><div style="width:5px;height:5px;background:#ffffff;border-radius: 50%;margin-right:5px"></div>数据量 :  ${p[0].value}</div>
       </div>`;
       return dom;
-    }
+    },
   },
   toolbox: {
     show: true,
-    orient: "horizontal"
+    orient: "horizontal",
   },
   grid: {
     left: "0",
-    right: "0"
+    right: "0",
   },
   dataZoom: [
     {
@@ -54,29 +54,29 @@ const option: ECOption = {
       startValue: 0,
       endValue: 9,
       handleStyle: {
-        color: "#6b9dfe"
+        color: "#6b9dfe",
       },
       textStyle: {
-        color: "transparent"
-      }
+        color: "transparent",
+      },
     },
     {
       type: "inside",
       show: true,
       height: 0,
-      zoomLock: true
-    }
+      zoomLock: true,
+    },
   ],
   xAxis: [
     {
       type: "category",
       data: curveData.map((val: any) => {
         return {
-          value: val.spotName
+          value: val.spotName,
         };
       }),
       axisTick: {
-        show: false
+        show: false,
       },
       axisLabel: {
         margin: 20,
@@ -86,29 +86,29 @@ const option: ECOption = {
         formatter: function (name: string) {
           undefined;
           return name.length > 8 ? name.slice(0, 8) + "..." : name;
-        }
+        },
       },
       axisLine: {
         lineStyle: {
-          color: "#c0c0c0"
-        }
-      }
-    }
+          color: "#c0c0c0",
+        },
+      },
+    },
   ],
   yAxis: [
     {
       min: 0,
       axisLine: {
-        show: false
+        show: false,
       },
       axisTick: {
-        show: false
+        show: false,
       },
       splitLine: {
         show: true,
         lineStyle: {
-          color: "#c0c0c0"
-        }
+          color: "#c0c0c0",
+        },
       },
       axisLabel: {
         color: "#a1a1a1",
@@ -121,9 +121,9 @@ const option: ECOption = {
             return value / 10000 + "w";
           }
           return value + "";
-        }
-      }
-    }
+        },
+      },
+    },
   ],
   series: [
     {
@@ -131,21 +131,21 @@ const option: ECOption = {
       type: "bar",
       data: curveData.map((val: any) => {
         return {
-          value: val.value
+          value: val.value,
         };
       }),
       barWidth: "45px",
       itemStyle: {
         color: "#C5D8FF",
-        borderRadius: [12, 12, 0, 0]
+        borderRadius: [12, 12, 0, 0],
       },
       emphasis: {
         itemStyle: {
-          color: "#6B9DFE"
-        }
-      }
-    }
-  ]
+          color: "#6B9DFE",
+        },
+      },
+    },
+  ],
 };
 </script>
 

@@ -19,7 +19,7 @@ const copy: Directive = {
   },
   beforeUnmount(el: ElType) {
     el.removeEventListener("click", handleClick);
-  }
+  },
 };
 
 async function handleClick(this: any) {
@@ -27,7 +27,7 @@ async function handleClick(this: any) {
     await navigator.clipboard.writeText(this.copyData);
     ElMessage({
       type: "success",
-      message: "复制成功"
+      message: "复制成功",
     });
   } catch (err) {
     console.error("复制操作不被支持或失败: ", err);

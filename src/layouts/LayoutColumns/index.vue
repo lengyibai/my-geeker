@@ -11,7 +11,10 @@
             v-for="item in menuList"
             :key="item.path"
             class="split-item"
-            :class="{ 'split-active': splitActive === item.path || `/${splitActive.split('/')[1]}` === item.path }"
+            :class="{
+              'split-active':
+                splitActive === item.path || `/${splitActive.split('/')[1]}` === item.path,
+            }"
             @click="changeSubMenu(item)"
           >
             <el-icon>
@@ -22,7 +25,10 @@
         </div>
       </el-scrollbar>
     </div>
-    <el-aside :class="{ 'not-aside': !subMenuList.length }" :style="{ width: isCollapse ? '65px' : '210px' }">
+    <el-aside
+      :class="{ 'not-aside': !subMenuList.length }"
+      :style="{ width: isCollapse ? '65px' : '210px' }"
+    >
       <div class="logo flx-center">
         <span v-show="subMenuList.length" class="logo-text">{{ isCollapse ? "G" : title }}</span>
       </div>
@@ -51,6 +57,7 @@
 <script setup lang="ts" name="layoutColumns">
 import { ref, computed, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
 import { useAuthStore } from "@/stores/modules/auth";
 import { useGlobalStore } from "@/stores/modules/global";
 import Main from "@/layouts/components/Main/index.vue";
@@ -67,7 +74,9 @@ const globalStore = useGlobalStore();
 const accordion = computed(() => globalStore.accordion);
 const isCollapse = computed(() => globalStore.isCollapse);
 const menuList = computed(() => authStore.showMenuListGet);
-const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string);
+const activeMenu = computed(
+  () => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string,
+);
 
 const subMenuList = ref<Menu.MenuOptions[]>([]);
 const splitActive = ref("");
@@ -85,8 +94,8 @@ watch(
   },
   {
     deep: true,
-    immediate: true
-  }
+    immediate: true,
+  },
 );
 
 // change SubMenu

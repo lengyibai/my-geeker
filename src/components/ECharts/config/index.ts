@@ -1,5 +1,13 @@
 import * as echarts from "echarts/core";
-import { BarChart, LineChart, LinesChart, PieChart, ScatterChart, RadarChart, GaugeChart } from "echarts/charts";
+import {
+  BarChart,
+  LineChart,
+  LinesChart,
+  PieChart,
+  ScatterChart,
+  RadarChart,
+  GaugeChart,
+} from "echarts/charts";
 import {
   TitleComponent,
   TooltipComponent,
@@ -10,7 +18,7 @@ import {
   PolarComponent,
   GeoComponent,
   ToolboxComponent,
-  DataZoomComponent
+  DataZoomComponent,
 } from "echarts/components";
 import { LabelLayout, UniversalTransition } from "echarts/features";
 import { CanvasRenderer } from "echarts/renderers";
@@ -21,13 +29,13 @@ import type {
   PieSeriesOption,
   ScatterSeriesOption,
   RadarSeriesOption,
-  GaugeSeriesOption
+  GaugeSeriesOption,
 } from "echarts/charts";
 import type {
   TitleComponentOption,
   TooltipComponentOption,
   GridComponentOption,
-  DatasetComponentOption
+  DatasetComponentOption,
 } from "echarts/components";
 import type { ComposeOption } from "echarts/core";
 import "echarts-liquidfill";
@@ -66,7 +74,7 @@ echarts.use([
   GaugeChart,
   LabelLayout,
   UniversalTransition,
-  CanvasRenderer
+  CanvasRenderer,
 ]);
 
 export default echarts;

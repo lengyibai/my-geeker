@@ -18,6 +18,7 @@
 
 <script setup lang="ts" name="login">
 import LoginForm from "./components/LoginForm.vue";
+
 import SwitchDark from "@/components/SwitchDark/index.vue";
 </script>
 

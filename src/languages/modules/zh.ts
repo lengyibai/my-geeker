@@ -1,6 +1,6 @@
 export default {
   home: {
-    welcome: "欢迎使用"
+    welcome: "欢迎使用",
   },
   tabs: {
     refresh: "刷新",
@@ -9,7 +9,7 @@ export default {
     closeLeft: "关闭左侧",
     closeRight: "关闭右侧",
     closeOther: "关闭其它",
-    closeAll: "关闭所有"
+    closeAll: "关闭所有",
   },
   header: {
     componentSize: "组件大小",
@@ -24,6 +24,6 @@ export default {
     exitFullScreen: "退出全屏",
     personalData: "个人信息",
     changePassword: "修改密码",
-    logout: "退出登录"
-  }
+    logout: "退出登录",
+  },
 };

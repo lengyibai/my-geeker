@@ -5,7 +5,11 @@
     <router-view v-slot="{ Component, route }">
       <transition appear name="fade-transform" mode="out-in">
         <keep-alive :include="keepAliveName">
-          <component :is="createComponentWrapper(Component, route)" v-if="isRouterShow" :key="route.fullPath" />
+          <component
+            :is="createComponentWrapper(Component, route)"
+            v-if="isRouterShow"
+            :key="route.fullPath"
+          />
         </keep-alive>
       </transition>
     </router-view>
@@ -19,9 +23,11 @@
 import { ref, onBeforeUnmount, provide, watch, h } from "vue";
 import { storeToRefs } from "pinia";
 import { useDebounceFn } from "@vueuse/core";
+
+import Maximize from "./components/Maximize.vue";
+
 import { useGlobalStore } from "@/stores/modules/global";
 import { useKeepAliveStore } from "@/stores/modules/keepAlive";
-import Maximize from "./components/Maximize.vue";
 import Tabs from "@/layouts/components/Tabs/index.vue";
 import Footer from "@/layouts/components/Footer/index.vue";
 
@@ -57,7 +63,7 @@ watch(
     if (maximize.value) app.classList.add("main-maximize");
     else app.classList.remove("main-maximize");
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 // 监听布局变化，在 body 上添加相对应的 layout class
@@ -67,7 +73,7 @@ watch(
     const body = document.body as HTMLElement;
     body.setAttribute("class", layout.value);
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 // 监听窗口大小变化，折叠侧边栏

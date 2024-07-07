@@ -20,13 +20,21 @@
       >
         <!-- 表格 header 按钮 -->
         <template #tableHeader>
-          <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
+          <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')"
+            >新增用户</el-button
+          >
         </template>
         <!-- 表格操作 -->
         <template #operation="scope">
-          <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
-          <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
-          <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
+          <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)"
+            >查看</el-button
+          >
+          <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)"
+            >编辑</el-button
+          >
+          <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)"
+            >删除</el-button
+          >
         </template>
       </ProTable>
       <UserDrawer ref="drawerRef" />
@@ -47,22 +55,30 @@ import ImportExcel from "@/components/ImportExcel/index.vue";
 import UserDrawer from "@/views/proTable/components/UserDrawer.vue";
 import { CirclePlus, Delete, EditPen, View } from "@element-plus/icons-vue";
 import { ColumnProps, ProTableInstance } from "@/components/ProTable/interface";
-import { getUserTreeList, deleteUser, editUser, addUser, getUserStatus, getUserDepartment } from "@/api/modules/user";
+import {
+  getUserTreeList,
+  deleteUser,
+  editUser,
+  addUser,
+  getUserStatus,
+  getUserDepartment,
+} from "@/api/modules/user";
 
 onMounted(() => {
   getTreeFilter();
   ElNotification({
     title: "温馨提示",
-    message: "该页面 ProTable 数据不会自动请求，需等待 treeFilter 数据请求完成之后，才会触发表格请求。",
+    message:
+      "该页面 ProTable 数据不会自动请求，需等待 treeFilter 数据请求完成之后，才会触发表格请求。",
     type: "info",
-    duration: 10000
+    duration: 10000,
   });
   setTimeout(() => {
     ElNotification({
       title: "温馨提示",
       message: "该页面 ProTable 性别搜索框为远程数据搜索，详情可查看代码。",
       type: "info",
-      duration: 10000
+      duration: 10000,
     });
   }, 0);
 });
@@ -98,7 +114,7 @@ const remoteMethod = (query: string) => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;
-    filterGenderEnum.value = genderType.filter(item => item.label.includes(query));
+    filterGenderEnum.value = genderType.filter((item) => item.label.includes(query));
   }, 500);
 };
 
@@ -114,9 +130,16 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
     enum: filterGenderEnum,
     search: {
       el: "select",
-      props: { placeholder: "请输入性别查询", filterable: true, remote: true, reserveKeyword: true, loading, remoteMethod }
+      props: {
+        placeholder: "请输入性别查询",
+        filterable: true,
+        remote: true,
+        reserveKeyword: true,
+        loading,
+        remoteMethod,
+      },
     },
-    render: scope => <>{scope.row.gender === 1 ? "男" : "女"}</>
+    render: (scope) => <>{scope.row.gender === 1 ? "男" : "女"}</>,
   },
   { prop: "idCard", label: "身份证号" },
   { prop: "email", label: "邮箱" },
@@ -128,10 +151,10 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
     tag: true,
     enum: getUserStatus,
     search: { el: "tree-select" },
-    fieldNames: { label: "userLabel", value: "userStatus" }
+    fieldNames: { label: "userLabel", value: "userStatus" },
   },
   { prop: "createTime", label: "创建时间", width: 180 },
-  { prop: "operation", label: "操作", width: 300, fixed: "right" }
+  { prop: "operation", label: "操作", width: 300, fixed: "right" },
 ]);
 
 // 删除用户信息
@@ -148,7 +171,7 @@ const openDrawer = (title: string, row: Partial<User.ResUserList> = {}) => {
     row: { ...row },
     isView: title === "查看",
     api: title === "新增" ? addUser : title === "编辑" ? editUser : undefined,
-    getTableList: proTable.value?.getTableList
+    getTableList: proTable.value?.getTableList,
   };
   drawerRef.value?.acceptParams(params);
 };

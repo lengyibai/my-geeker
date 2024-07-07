@@ -11,15 +11,15 @@ import ECharts from "@/components/ECharts/index.vue";
 const option: ECOption = {
   tooltip: {
     trigger: "item",
-    formatter: "{a} <br/>{b} : {c} ({d}%)"
+    formatter: "{a} <br/>{b} : {c} ({d}%)",
   },
   legend: {
     left: "center",
     top: "bottom",
     data: ["rose 1", "rose 2", "rose 3", "rose 4", "rose 5", "rose 6", "rose 7", "rose 8"],
     textStyle: {
-      color: "#a1a1a1"
-    }
+      color: "#a1a1a1",
+    },
   },
   toolbox: {
     show: true,
@@ -27,8 +27,8 @@ const option: ECOption = {
       mark: { show: true },
       dataView: { show: true, readOnly: false },
       restore: { show: true },
-      saveAsImage: { show: true }
-    }
+      saveAsImage: { show: true },
+    },
   },
   series: [
     {
@@ -38,15 +38,15 @@ const option: ECOption = {
       center: ["50%", "50%"],
       roseType: "radius",
       itemStyle: {
-        borderRadius: 5
+        borderRadius: 5,
       },
       label: {
-        show: true
+        show: true,
       },
       emphasis: {
         label: {
-          show: true
-        }
+          show: true,
+        },
       },
       data: [
         { value: 40, name: "rose 1" },
@@ -56,10 +56,10 @@ const option: ECOption = {
         { value: 20, name: "rose 5" },
         { value: 15, name: "rose 6" },
         { value: 12, name: "rose 7" },
-        { value: 10, name: "rose 8" }
-      ]
-    }
-  ]
+        { value: 10, name: "rose 8" },
+      ],
+    },
+  ],
 };
 </script>
 

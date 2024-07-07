@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { computed } from "vue";
+
 import { useGlobalStore } from "@/stores/modules/global";
 import { LanguageType } from "@/stores/interface";
 
@@ -28,7 +29,7 @@ const language = computed(() => globalStore.language);
 
 const languageList = [
   { label: "简体中文", value: "zh" },
-  { label: "English", value: "en" }
+  { label: "English", value: "en" },
 ];
 
 const changeLanguage = (lang: string) => {

@@ -2,12 +2,22 @@
   <div v-if="columns.length" class="card table-search">
     <el-form ref="formRef" :model="searchParam">
       <Grid ref="gridRef" :collapsed="collapsed" :gap="[20, 0]" :cols="searchCol">
-        <GridItem v-for="(item, index) in columns" :key="item.prop" v-bind="getResponsive(item)" :index="index">
+        <GridItem
+          v-for="(item, index) in columns"
+          :key="item.prop"
+          v-bind="getResponsive(item)"
+          :index="index"
+        >
           <el-form-item>
             <template #label>
               <el-space :size="4">
                 <span>{{ `${item.search?.label ?? item.label}` }}</span>
-                <el-tooltip v-if="item.search?.tooltip" effect="dark" :content="item.search?.tooltip" placement="top">
+                <el-tooltip
+                  v-if="item.search?.tooltip"
+                  effect="dark"
+                  :content="item.search?.tooltip"
+                  placement="top"
+                >
                   <i :class="'iconfont icon-yiwen'"></i>
                 </el-tooltip>
               </el-space>
@@ -20,7 +30,13 @@
           <div class="operation">
             <el-button type="primary" :icon="Search" @click="search"> 搜索 </el-button>
             <el-button :icon="Delete" @click="reset"> 重置 </el-button>
-            <el-button v-if="showCollapse" type="primary" link class="search-isOpen" @click="collapsed = !collapsed">
+            <el-button
+              v-if="showCollapse"
+              type="primary"
+              link
+              class="search-isOpen"
+              @click="collapsed = !collapsed"
+            >
               {{ collapsed ? "展开" : "合并" }}
               <el-icon class="el-icon--right">
                 <component :is="collapsed ? ArrowDown : ArrowUp"></component>
@@ -34,10 +50,12 @@
 </template>
 <script setup lang="ts" name="SearchForm">
 import { computed, ref } from "vue";
+import { Delete, Search, ArrowDown, ArrowUp } from "@element-plus/icons-vue";
+
+import SearchFormItem from "./components/SearchFormItem.vue";
+
 import { ColumnProps } from "@/components/ProTable/interface";
 import { BreakPoint } from "@/components/Grid/interface";
-import { Delete, Search, ArrowDown, ArrowUp } from "@element-plus/icons-vue";
-import SearchFormItem from "./components/SearchFormItem.vue";
 import Grid from "@/components/Grid/index.vue";
 import GridItem from "@/components/Grid/components/GridItem.vue";
 
@@ -52,7 +70,7 @@ interface ProTableProps {
 // 默认值
 const props = withDefaults(defineProps<ProTableProps>(), {
   columns: () => [],
-  searchParam: () => ({})
+  searchParam: () => ({}),
 });
 
 // 获取响应式设置
@@ -64,7 +82,7 @@ const getResponsive = (item: ColumnProps) => {
     sm: item.search?.sm,
     md: item.search?.md,
     lg: item.search?.lg,
-    xl: item.search?.xl
+    xl: item.search?.xl,
   };
 };
 

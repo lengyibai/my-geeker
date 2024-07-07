@@ -6,15 +6,18 @@
       type="success"
       :closable="false"
     />
-    <el-button class="mt20" type="primary" :icon="Promotion" @click="handleToLogin"> 登录其他账号 </el-button>
+    <el-button class="mt20" type="primary" :icon="Promotion" @click="handleToLogin">
+      登录其他账号
+    </el-button>
   </div>
 </template>
 
 <script setup lang="ts" name="authMenu">
 import { useRouter } from "vue-router";
+import { Promotion } from "@element-plus/icons-vue";
+
 import { LOGIN_URL } from "@/config";
 import { useUserStore } from "@/stores/modules/user";
-import { Promotion } from "@element-plus/icons-vue";
 
 const router = useRouter();
 const userStore = useUserStore();

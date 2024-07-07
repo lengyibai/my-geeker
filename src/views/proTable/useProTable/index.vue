@@ -10,11 +10,23 @@
     >
       <!-- 表格 header 按钮 -->
       <template #tableHeader="scope">
-        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
-        <el-button v-auth="'batchAdd'" type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>
-        <el-button v-auth="'export'" type="primary" :icon="Download" plain @click="downloadFile">导出用户数据</el-button>
+        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')"
+          >新增用户</el-button
+        >
+        <el-button v-auth="'batchAdd'" type="primary" :icon="Upload" plain @click="batchAdd"
+          >批量添加用户</el-button
+        >
+        <el-button v-auth="'export'" type="primary" :icon="Download" plain @click="downloadFile"
+          >导出用户数据</el-button
+        >
         <el-button type="primary" plain @click="toDetail">To 子集详情页面</el-button>
-        <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
+        <el-button
+          type="danger"
+          :icon="Delete"
+          plain
+          :disabled="!scope.isSelected"
+          @click="batchDelete(scope.selectedListIds)"
+        >
           批量删除用户
         </el-button>
       </template>
@@ -36,10 +48,18 @@
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
-        <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
-        <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
-        <el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)">重置密码</el-button>
-        <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
+        <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)"
+          >查看</el-button
+        >
+        <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)"
+          >编辑</el-button
+        >
+        <el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)"
+          >重置密码</el-button
+        >
+        <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)"
+          >删除</el-button
+        >
       </template>
     </ProTable>
     <UserDrawer ref="drawerRef" />
@@ -59,7 +79,15 @@ import ProTable from "@/components/ProTable/index.vue";
 import ImportExcel from "@/components/ImportExcel/index.vue";
 import UserDrawer from "@/views/proTable/components/UserDrawer.vue";
 import { ProTableInstance, ColumnProps, HeaderRenderScope } from "@/components/ProTable/interface";
-import { CirclePlus, Delete, EditPen, Download, Upload, View, Refresh } from "@element-plus/icons-vue";
+import {
+  CirclePlus,
+  Delete,
+  EditPen,
+  Download,
+  Upload,
+  View,
+  Refresh,
+} from "@element-plus/icons-vue";
 import {
   getUserList,
   deleteUser,
@@ -70,7 +98,7 @@ import {
   exportUserInfo,
   BatchAddUser,
   getUserStatus,
-  getUserGender
+  getUserGender,
 } from "@/api/modules/user";
 
 const router = useRouter();
@@ -91,7 +119,7 @@ const initParam = reactive({ type: 1 });
 const dataCallback = (data: any) => {
   return {
     list: data.list,
-    total: data.total
+    total: data.total,
   };
 };
 
@@ -126,13 +154,17 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
     prop: "username",
     label: "用户姓名",
     search: { el: "input", tooltip: "我是搜索提示" },
-    render: scope => {
+    render: (scope) => {
       return (
-        <el-button type="primary" link onClick={() => ElMessage.success("我是通过 tsx 语法渲染的内容")}>
+        <el-button
+          type="primary"
+          link
+          onClick={() => ElMessage.success("我是通过 tsx 语法渲染的内容")}
+        >
           {scope.row.username}
         </el-button>
       );
-    }
+    },
   },
   {
     prop: "gender",
@@ -144,7 +176,7 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
     // 字典请求携带参数
     // enum: () => getUserGender({ id: 1 }),
     search: { el: "select", props: { filterable: true } },
-    fieldNames: { label: "genderLabel", value: "genderValue" }
+    fieldNames: { label: "genderLabel", value: "genderValue" },
   },
   {
     // 多级 prop
@@ -160,8 +192,8 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
             <el-input vModel_trim={searchParam.maxAge} placeholder="最大年龄" />
           </div>
         );
-      }
-    }
+      },
+    },
   },
   { prop: "idCard", label: "身份证号", search: { el: "input" } },
   { prop: "email", label: "邮箱" },
@@ -172,7 +204,7 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
     enum: getUserStatus,
     search: { el: "tree-select", props: { filterable: true } },
     fieldNames: { label: "userLabel", value: "userStatus" },
-    render: scope => {
+    render: (scope) => {
       return (
         <>
           {BUTTONS.value.status ? (
@@ -184,11 +216,13 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
               onClick={() => changeStatus(scope.row)}
             />
           ) : (
-            <el-tag type={scope.row.status ? "success" : "danger"}>{scope.row.status ? "启用" : "禁用"}</el-tag>
+            <el-tag type={scope.row.status ? "success" : "danger"}>
+              {scope.row.status ? "启用" : "禁用"}
+            </el-tag>
           )}
         </>
       );
-    }
+    },
   },
   {
     prop: "createTime",
@@ -199,10 +233,10 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
       el: "date-picker",
       span: 2,
       props: { type: "datetimerange", valueFormat: "YYYY-MM-DD HH:mm:ss" },
-      defaultValue: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"]
-    }
+      defaultValue: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
+    },
   },
-  { prop: "operation", label: "操作", fixed: "right", width: 330 }
+  { prop: "operation", label: "操作", fixed: "right", width: 330 },
 ]);
 
 // 表格拖拽排序
@@ -233,14 +267,18 @@ const resetPass = async (params: User.ResUserList) => {
 
 // 切换用户状态
 const changeStatus = async (row: User.ResUserList) => {
-  await useHandleData(changeUserStatus, { id: row.id, status: row.status == 1 ? 0 : 1 }, `切换【${row.username}】用户状态`);
+  await useHandleData(
+    changeUserStatus,
+    { id: row.id, status: row.status === 1 ? 0 : 1 },
+    `切换【${row.username}】用户状态`,
+  );
   proTable.value?.getTableList();
 };
 
 // 导出用户列表
 const downloadFile = async () => {
   ElMessageBox.confirm("确认导出用户数据?", "温馨提示", { type: "warning" }).then(() =>
-    useDownload(exportUserInfo, "用户列表", proTable.value?.searchParam)
+    useDownload(exportUserInfo, "用户列表", proTable.value?.searchParam),
   );
 };
 
@@ -251,7 +289,7 @@ const batchAdd = () => {
     title: "用户",
     tempApi: exportUserInfo,
     importApi: BatchAddUser,
-    getTableList: proTable.value?.getTableList
+    getTableList: proTable.value?.getTableList,
   };
   dialogRef.value?.acceptParams(params);
 };
@@ -264,7 +302,7 @@ const openDrawer = (title: string, row: Partial<User.ResUserList> = {}) => {
     isView: title === "查看",
     row: { ...row },
     api: title === "新增" ? addUser : title === "编辑" ? editUser : undefined,
-    getTableList: proTable.value?.getTableList
+    getTableList: proTable.value?.getTableList,
   };
   drawerRef.value?.acceptParams(params);
 };

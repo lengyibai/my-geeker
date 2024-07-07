@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+
 import { ECOption } from "@/components/ECharts/config";
 import ECharts from "@/components/ECharts/index.vue";
 
@@ -36,8 +37,8 @@ const option = {
         textShadowColor: "#000",
         textShadowBlur: 0,
         textShadowOffsetX: 0,
-        textShadowOffsetY: 1
-      }
+        textShadowOffsetY: 1,
+      },
     },
     {
       text: "预约量",
@@ -53,50 +54,50 @@ const option = {
         textShadowColor: "#000",
         textShadowBlur: 0,
         textShadowOffsetX: 0,
-        textShadowOffsetY: 1
-      }
-    }
+        textShadowOffsetY: 1,
+      },
+    },
   ],
   grid: {
     top: "0",
     left: "0px",
     right: "0px",
     bottom: "0",
-    containLabel: true
+    containLabel: true,
   },
   polar: {
     radius: ["75%", "85%"],
-    center: ["50%", "50%"]
+    center: ["50%", "50%"],
   },
   angleAxis: {
     max: 120,
     clockwise: false,
     axisLine: {
-      show: false
+      show: false,
     },
     axisTick: {
-      show: false
+      show: false,
     },
     axisLabel: {
-      show: false
+      show: false,
     },
     splitLine: {
-      show: false
+      show: false,
     },
-    startAngle: 188
+    startAngle: 188,
   },
   radiusAxis: {
     type: "category",
     show: true,
     axisLabel: {
-      show: false
+      show: false,
     },
     axisLine: {
-      show: false
+      show: false,
     },
     axisTick: {
-      show: false
-    }
+      show: false,
+    },
   },
   series: [
     {
@@ -114,10 +115,10 @@ const option = {
           y2: 1,
           colorStops: [
             { offset: 0, color: "#35FAB6" },
-            { offset: 1, color: "rgba(40, 209, 247,0.3)" }
+            { offset: 1, color: "rgba(40, 209, 247,0.3)" },
           ],
-          global: false
-        }
+          global: false,
+        },
       },
       outline: {
         borderDistance: 0,
@@ -125,11 +126,11 @@ const option = {
           borderWidth: 2,
           borderColor: "#31d8d5",
           shadowBlur: 20,
-          shadowColor: "#50c1a7"
-        }
+          shadowColor: "#50c1a7",
+        },
       },
       label: {
-        show: false
+        show: false,
       },
       backgroundStyle: {
         borderWidth: 1,
@@ -141,11 +142,11 @@ const option = {
           colorStops: [
             { offset: 0, color: "#0D2648" },
             { offset: 0.8, color: "#0D2648" },
-            { offset: 1, color: "#228E7D" }
+            { offset: 1, color: "#228E7D" },
           ],
-          global: false
-        }
-      }
+          global: false,
+        },
+      },
     },
     {
       type: "pie",
@@ -160,9 +161,9 @@ const option = {
         borderDashOffset: 15,
         borderColor: "#31d8d5",
         color: "#11144e",
-        borderCap: "round"
+        borderCap: "round",
       },
-      data: [100]
+      data: [100],
     },
     {
       type: "bar",
@@ -170,9 +171,9 @@ const option = {
       z: 10,
       coordinateSystem: "polar",
       roundCap: true,
-      color: "#31d8d5"
-    }
-  ]
+      color: "#31d8d5",
+    },
+  ],
 } as ECOption;
 </script>
 

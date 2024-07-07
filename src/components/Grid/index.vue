@@ -17,8 +17,9 @@ import {
   onDeactivated,
   onActivated,
   VNodeArrayChildren,
-  VNode
+  VNode,
 } from "vue";
+
 import type { BreakPoint } from "./interface/index";
 
 type Props = {
@@ -32,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
   cols: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }),
   collapsed: false,
   collapsedRows: 1,
-  gap: 0
+  gap: 0,
 });
 
 onBeforeMount(() => props.collapsed && findIndex());
@@ -53,7 +54,7 @@ onDeactivated(() => {
 
 // 监听屏幕变化
 const resize = (e: UIEvent) => {
-  let width = (e.target as Window).innerWidth;
+  const width = (e.target as Window).innerWidth;
   switch (!!width) {
     case width < 768:
       breakPoint.value = "xs";
@@ -77,7 +78,7 @@ const resize = (e: UIEvent) => {
 provide("gap", Array.isArray(props.gap) ? props.gap[0] : props.gap);
 
 // 注入响应式断点
-let breakPoint = ref<BreakPoint>("xl");
+const breakPoint = ref<BreakPoint>("xl");
 provide("breakPoint", breakPoint);
 
 // 注入要开始折叠的 index
@@ -95,13 +96,19 @@ provide("cols", gridCols);
 const slots = useSlots().default!();
 
 const findIndex = () => {
-  let fields: VNodeArrayChildren = [];
+  const fields: VNodeArrayChildren = [];
   let suffix: VNode | null = null;
   slots.forEach((slot: any) => {
     // suffix
-    if (typeof slot.type === "object" && slot.type.name === "GridItem" && slot.props?.suffix !== undefined) suffix = slot;
+    if (
+      typeof slot.type === "object" &&
+      slot.type.name === "GridItem" &&
+      slot.props?.suffix !== undefined
+    )
+      suffix = slot;
     // slot children
-    if (typeof slot.type === "symbol" && Array.isArray(slot.children)) fields.push(...slot.children);
+    if (typeof slot.type === "symbol" && Array.isArray(slot.children))
+      fields.push(...slot.children);
   });
 
   // 计算 suffix 所占用的列
@@ -115,8 +122,12 @@ const findIndex = () => {
     let find = false;
     fields.reduce((prev = 0, current, index) => {
       prev +=
-        ((current as VNode)!.props![breakPoint.value]?.span ?? (current as VNode)!.props?.span ?? 1) +
-        ((current as VNode)!.props![breakPoint.value]?.offset ?? (current as VNode)!.props?.offset ?? 0);
+        ((current as VNode)!.props![breakPoint.value]?.span ??
+          (current as VNode)!.props?.span ??
+          1) +
+        ((current as VNode)!.props![breakPoint.value]?.offset ??
+          (current as VNode)!.props?.offset ??
+          0);
       if (Number(prev) > props.collapsedRows * gridCols.value - suffixCols) {
         hiddenIndex.value = index;
         find = true;
@@ -135,16 +146,16 @@ watch(
   () => breakPoint.value,
   () => {
     if (props.collapsed) findIndex();
-  }
+  },
 );
 
 // 监听 collapsed
 watch(
   () => props.collapsed,
-  value => {
+  (value) => {
     if (value) return findIndex();
     hiddenIndex.value = -1;
-  }
+  },
 );
 
 // 设置间距
@@ -159,7 +170,7 @@ const style = computed(() => {
   return {
     display: "grid",
     gridGap: gridGap.value,
-    gridTemplateColumns: `repeat(${gridCols.value}, minmax(0, 1fr))`
+    gridTemplateColumns: `repeat(${gridCols.value}, minmax(0, 1fr))`,
   };
 });
 

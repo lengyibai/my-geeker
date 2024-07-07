@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+
 import { useGlobalStore } from "@/stores/modules/global";
 import { AssemblySizeType } from "@/stores/interface";
 
@@ -27,7 +28,7 @@ const assemblySize = computed(() => globalStore.assemblySize);
 const assemblySizeList = [
   { label: "默认", value: "default" },
   { label: "大型", value: "large" },
-  { label: "小型", value: "small" }
+  { label: "小型", value: "small" },
 ];
 
 const setAssemblySize = (item: AssemblySizeType) => {

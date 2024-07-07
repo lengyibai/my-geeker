@@ -20,8 +20,8 @@ const option = {
         fontSize: 16,
         fontFamily: "Microsoft Yahei",
         fontWeight: "100",
-        textAlign: "center"
-      }
+        textAlign: "center",
+      },
     },
     {
       text: "实时客流量",
@@ -33,8 +33,8 @@ const option = {
         fontSize: 16,
         fontFamily: "Microsoft Yahei",
         fontWeight: "100",
-        textAlign: "center"
-      }
+        textAlign: "center",
+      },
     },
     {
       text: (0.5 * 100).toFixed(0) + "%",
@@ -50,8 +50,8 @@ const option = {
         textShadowColor: "#fff",
         textShadowBlur: "0",
         textShadowOffsetX: 0,
-        textShadowOffsetY: 1
-      }
+        textShadowOffsetY: 1,
+      },
     },
     {
       text: (0.5 * 100).toFixed(0) + "%",
@@ -67,9 +67,9 @@ const option = {
         textShadowColor: "#fff",
         textShadowBlur: "0",
         textShadowOffsetX: 0,
-        textShadowOffsetY: 1
-      }
-    }
+        textShadowOffsetY: 1,
+      },
+    },
   ],
   series: [
     {
@@ -87,37 +87,37 @@ const option = {
           colorStops: [
             {
               offset: 1,
-              color: "rgba(251, 173, 23, 0)"
+              color: "rgba(251, 173, 23, 0)",
             },
             {
               offset: 0.5,
-              color: "rgba(251, 173, 23, .2)"
+              color: "rgba(251, 173, 23, .2)",
             },
             {
               offset: 0,
-              color: "rgba(251, 173, 23, 1)"
-            }
+              color: "rgba(251, 173, 23, 1)",
+            },
           ],
-          globalCoord: false
-        }
+          globalCoord: false,
+        },
       ],
       data: [0.5, 0.5, 0.5],
       backgroundStyle: {
         borderWidth: 1,
-        color: "transparent"
+        color: "transparent",
       },
       label: {
         normal: {
-          formatter: ""
-        }
+          formatter: "",
+        },
       },
       outline: {
         show: true,
         itemStyle: {
-          borderWidth: 0
+          borderWidth: 0,
         },
-        borderDistance: 0
-      }
+        borderDistance: 0,
+      },
     },
     {
       name: "第二层白边",
@@ -129,9 +129,9 @@ const option = {
       itemStyle: {
         normal: {
           label: {
-            show: false
-          }
-        }
+            show: false,
+          },
+        },
       },
       data: [
         {
@@ -141,25 +141,25 @@ const option = {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 {
                   offset: 0,
-                  color: "#fefefe"
+                  color: "#fefefe",
                 },
                 {
                   offset: 1,
-                  color: "#e7e8ea"
-                }
-              ])
-            }
-          }
+                  color: "#e7e8ea",
+                },
+              ]),
+            },
+          },
         },
         {
           value: 0,
           itemStyle: {
             normal: {
-              color: "transparent"
-            }
-          }
-        }
-      ]
+              color: "transparent",
+            },
+          },
+        },
+      ],
     },
     {
       name: "最外绿边",
@@ -171,26 +171,26 @@ const option = {
       itemStyle: {
         normal: {
           label: {
-            show: false
-          }
-        }
+            show: false,
+          },
+        },
       },
       data: [
         {
           value: 100,
           itemStyle: {
-            color: "#fdc56e"
-          }
+            color: "#fdc56e",
+          },
         },
         {
           value: 0,
           itemStyle: {
             normal: {
-              color: "transparent"
-            }
-          }
-        }
-      ]
+              color: "transparent",
+            },
+          },
+        },
+      ],
     },
     {
       type: "liquidFill",
@@ -201,20 +201,20 @@ const option = {
       data: [0.6, { value: 0.5, direction: "left" }, 0.4, 0.3],
       backgroundStyle: {
         borderWidth: 1,
-        color: "transparent"
+        color: "transparent",
       },
       label: {
         normal: {
-          formatter: ""
-        }
+          formatter: "",
+        },
       },
       outline: {
         show: true,
         itemStyle: {
-          borderWidth: 0
+          borderWidth: 0,
         },
-        borderDistance: 0
-      }
+        borderDistance: 0,
+      },
     },
     {
       name: "第二层白边",
@@ -226,9 +226,9 @@ const option = {
       itemStyle: {
         normal: {
           label: {
-            show: false
-          }
-        }
+            show: false,
+          },
+        },
       },
       data: [
         {
@@ -238,25 +238,25 @@ const option = {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 {
                   offset: 0,
-                  color: "#fefefe"
+                  color: "#fefefe",
                 },
                 {
                   offset: 1,
-                  color: "#e7e8ea"
-                }
-              ])
-            }
-          }
+                  color: "#e7e8ea",
+                },
+              ]),
+            },
+          },
         },
         {
           value: 0,
           itemStyle: {
             normal: {
-              color: "transparent"
-            }
-          }
-        }
-      ]
+              color: "transparent",
+            },
+          },
+        },
+      ],
     },
     {
       name: "最外蓝边",
@@ -268,28 +268,28 @@ const option = {
       itemStyle: {
         normal: {
           label: {
-            show: false
-          }
-        }
+            show: false,
+          },
+        },
       },
       data: [
         {
           value: 100,
           itemStyle: {
-            color: "#07a2e3"
-          }
+            color: "#07a2e3",
+          },
         },
         {
           value: 0,
           itemStyle: {
             normal: {
-              color: "transparent"
-            }
-          }
-        }
-      ]
-    }
-  ]
+              color: "transparent",
+            },
+          },
+        },
+      ],
+    },
+  ],
 } as ECOption;
 </script>
 
