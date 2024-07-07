@@ -1,9 +1,7 @@
-/dist/*
-.local
-/node_modules/**
-
-**/*.svg
-**/*.sh
-
-/public/*
-stats.html
+*.md
+*.svg
+*.ttf
+*.woff
+dist
+node_modules
+Test

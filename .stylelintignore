@@ -1,4 +1,6 @@
-/dist/*
-/public/*
-public/*
-stats.html
+dist
+public
+Test
+Temp
+*.html
+node_modules

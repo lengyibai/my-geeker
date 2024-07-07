@@ -1,4 +1,5 @@
 import { resolve } from "path";
+
 import { PluginOption } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import { createHtmlPlugin } from "vite-plugin-html";
@@ -6,7 +7,6 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import eslintPlugin from "vite-plugin-eslint";
 import viteCompression from "vite-plugin-compression";
 import vueSetupExtend from "unplugin-vue-setup-extend-plus/vite";
 import NextDevTools from "vite-plugin-vue-devtools";
@@ -23,8 +23,6 @@ export const createVitePlugins = (viteEnv: ViteEnv): (PluginOption | PluginOptio
     vueJsx(),
     // devTools
     VITE_DEVTOOLS && NextDevTools({ launchEditor: "code" }),
-    // esLint 报错信息显示在浏览器界面上
-    eslintPlugin(),
     // name 可以写在 script 标签上
     vueSetupExtend({}),
     // 创建打包压缩配置
@@ -33,18 +31,19 @@ export const createVitePlugins = (viteEnv: ViteEnv): (PluginOption | PluginOptio
     createHtmlPlugin({
       minify: true,
       inject: {
-        data: { title: VITE_GLOB_APP_TITLE }
-      }
+        data: { title: VITE_GLOB_APP_TITLE },
+      },
     }),
     // 使用 svg 图标
     createSvgIconsPlugin({
       iconDirs: [resolve(process.cwd(), "src/assets/icons")],
-      symbolId: "icon-[dir]-[name]"
+      symbolId: "icon-[dir]-[name]",
     }),
     // vitePWA
     VITE_PWA && createVitePwa(viteEnv),
     // 是否生成包预览，分析依赖包大小做优化处理
-    VITE_REPORT && (visualizer({ filename: "stats.html", gzipSize: true, brotliSize: true }) as PluginOption)
+    VITE_REPORT &&
+      (visualizer({ filename: "stats.html", gzipSize: true, brotliSize: true }) as PluginOption),
   ];
 };
 
@@ -61,8 +60,8 @@ const createCompression = (viteEnv: ViteEnv): PluginOption | PluginOption[] => {
       viteCompression({
         ext: ".gz",
         algorithm: "gzip",
-        deleteOriginFile: VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE
-      })
+        deleteOriginFile: VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE,
+      }),
     );
   }
   if (compressList.includes("brotli")) {
@@ -70,8 +69,8 @@ const createCompression = (viteEnv: ViteEnv): PluginOption | PluginOption[] => {
       viteCompression({
         ext: ".br",
         algorithm: "brotliCompress",
-        deleteOriginFile: VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE
-      })
+        deleteOriginFile: VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE,
+      }),
     );
   }
   return plugins;
@@ -93,20 +92,20 @@ const createVitePwa = (viteEnv: ViteEnv): PluginOption | PluginOption[] => {
         {
           src: "/logo.png",
           sizes: "192x192",
-          type: "image/png"
-        },
-        {
-          src: "/logo.png",
-          sizes: "512x512",
-          type: "image/png"
+          type: "image/png",
         },
         {
           src: "/logo.png",
           sizes: "512x512",
           type: "image/png",
-          purpose: "any maskable"
-        }
-      ]
-    }
+        },
+        {
+          src: "/logo.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any maskable",
+        },
+      ],
+    },
   });
 };
