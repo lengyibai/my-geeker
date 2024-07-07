@@ -10,13 +10,11 @@
     >
       <!-- 表格 header 按钮 -->
       <template #tableHeader="scope">
-        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')"
+        <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')"
           >新增用户</el-button
         >
-        <el-button v-auth="'batchAdd'" type="primary" :icon="Upload" plain @click="batchAdd"
-          >批量添加用户</el-button
-        >
-        <el-button v-auth="'export'" type="primary" :icon="Download" plain @click="downloadFile"
+        <el-button type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>
+        <el-button type="primary" :icon="Download" plain @click="downloadFile"
           >导出用户数据</el-button
         >
         <el-button type="primary" plain @click="toDetail">To 子集详情页面</el-button>
@@ -73,7 +71,6 @@ import { useRouter } from "vue-router";
 import { User } from "@/api/interface";
 import { useHandleData } from "@/hooks/useHandleData";
 import { useDownload } from "@/hooks/useDownload";
-import { useAuthButtons } from "@/hooks/useAuthButtons";
 import { ElMessage, ElMessageBox } from "element-plus";
 import ProTable from "@/components/ProTable/index.vue";
 import ImportExcel from "@/components/ImportExcel/index.vue";
@@ -132,9 +129,6 @@ const getTableList = (params: any) => {
   delete newParams.createTime;
   return getUserList(newParams);
 };
-
-// 页面按钮权限（按钮权限既可以使用 hooks，也可以直接使用 v-auth 指令，指令适合直接绑定在按钮上，hooks 适合根据按钮权限显示不同的内容）
-const { BUTTONS } = useAuthButtons();
 
 // 自定义渲染表头（使用tsx语法）
 const headerRender = (scope: HeaderRenderScope<User.ResUserList>) => {
@@ -206,21 +200,13 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
     fieldNames: { label: "userLabel", value: "userStatus" },
     render: (scope) => {
       return (
-        <>
-          {BUTTONS.value.status ? (
-            <el-switch
-              model-value={scope.row.status}
-              active-text={scope.row.status ? "启用" : "禁用"}
-              active-value={1}
-              inactive-value={0}
-              onClick={() => changeStatus(scope.row)}
-            />
-          ) : (
-            <el-tag type={scope.row.status ? "success" : "danger"}>
-              {scope.row.status ? "启用" : "禁用"}
-            </el-tag>
-          )}
-        </>
+        <el-switch
+          model-value={scope.row.status}
+          active-text={scope.row.status ? "启用" : "禁用"}
+          active-value={1}
+          inactive-value={0}
+          onClick={() => changeStatus(scope.row)}
+        />
       );
     },
   },

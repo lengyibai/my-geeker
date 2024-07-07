@@ -12,6 +12,7 @@ module.exports = {
     },
   ],
   rules: {
+    "value-keyword-case": null, //属性值使用小写字母
     "function-no-unknown": null, //禁止使用未知的函数
     "no-empty-source": null, //禁止空源文件
     "import-notation": null, //禁止使用@import规则

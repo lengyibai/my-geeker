@@ -220,7 +220,7 @@ const uploadError = () => {
       width: v-bind(width);
       height: v-bind(height);
       border: 1px dashed var(--el-border-color-darker);
-      border-radius: v-bind(borderradius);
+      border-radius: v-bind(borderRadius);
       transition: var(--el-transition-duration-fast);
 
       &:hover {
@@ -240,7 +240,7 @@ const uploadError = () => {
         height: 100%;
         padding: 0;
         border: 1px dashed var(--el-border-color-darker);
-        border-radius: v-bind(borderradius);
+        border-radius: v-bind(borderRadius);
         background-color: transparent;
 
         &:hover {
