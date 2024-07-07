@@ -21,19 +21,21 @@ const exitMaximize = () => {
   z-index: 999;
   width: 55px;
   height: 55px;
-  cursor: pointer;
-  background-color: var(--el-color-info);
   border-radius: 50%;
+  background-color: var(--el-color-info);
   opacity: 0.9;
+  cursor: pointer;
+
   &:hover {
     background-color: var(--el-color-info-dark-2);
   }
+
   .iconfont {
     position: relative;
     top: 46%;
     left: 19%;
+    color: #fff;
     font-size: 14px;
-    color: #ffffff;
   }
 }
 </style>

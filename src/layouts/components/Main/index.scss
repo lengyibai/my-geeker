@@ -1,9 +1,10 @@
 .el-main {
-  box-sizing: border-box;
-  padding: 10px 12px;
   overflow-x: hidden;
+  padding: 10px 12px;
   background-color: var(--el-bg-color-page);
+  box-sizing: border-box;
 }
+
 .el-footer {
   height: auto;
   padding: 0;

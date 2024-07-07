@@ -2,11 +2,12 @@
   width: 100%;
   height: 100%;
   background: url("./images/bg.png") no-repeat;
-  background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: 100% 100%;
   background-size: cover;
+  background-repeat: no-repeat;
+
   .dataScreen-content {
     position: fixed;
     top: 50%;
@@ -17,10 +18,12 @@
     overflow: hidden;
     transition: all 0.3s;
     transform-origin: left top;
+
     .dataScreen-header {
       display: flex;
       width: 100%;
       height: 38px;
+
       .header-lf,
       .header-ri {
         position: relative;
@@ -29,94 +32,104 @@
         background: url("./images/dataScreen-header-left-bg.png") no-repeat;
         background-size: 100% 100%;
       }
+
       .header-ct {
         position: relative;
         flex: 1;
         height: 100%;
+
         .header-ct-title {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 82px;
-          font-family: YouSheBiaoTiHei;
-          font-size: 32px;
-          line-height: 78px;
           color: #05e8fe;
+          font-size: 32px;
+          font-family: YouSheBiaoTiHei;
           text-align: center;
-          letter-spacing: 4px;
+          line-height: 78px;
           background: url("./images/dataScreen-header-center-bg.png") no-repeat;
           background-size: 100% 100%;
+          letter-spacing: 4px;
+
           .header-ct-warning {
             position: absolute;
-            bottom: -42px;
             left: 50%;
+            bottom: -42px;
             width: 622px;
             height: 44px;
-            font-family: YouSheBiaoTiHei;
+            color: #fff;
             font-size: 14px;
-            line-height: 44px;
-            color: #ffffff;
+            font-family: YouSheBiaoTiHei;
             text-align: center;
-            letter-spacing: 1px;
+            line-height: 44px;
             background: url("./images/dataScreen-header-warn-bg.png") no-repeat;
             background-size: 100% 100%;
             transform: translateX(-50%);
+            letter-spacing: 1px;
           }
         }
       }
+
       .header-screening,
       .header-download {
         position: absolute;
         z-index: 9;
-        box-sizing: border-box;
         width: 136px;
         height: 42px;
-        font-family: YouSheBiaoTiHei;
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 42px;
         color: #29fcff;
+        font-size: 18px;
+        font-family: YouSheBiaoTiHei;
+        font-weight: 400;
         text-align: center;
-        cursor: pointer;
+        line-height: 42px;
         background-size: 100% 100%;
+        box-sizing: border-box;
+        cursor: pointer;
       }
+
       .header-screening {
         right: 0;
         padding-right: 4px;
         background: url("./images/dataScreen-header-btn-bg-l.png") no-repeat;
       }
+
       .header-download {
         left: 0;
         padding-right: 0;
         background: url("./images/dataScreen-header-btn-bg-r.png") no-repeat;
       }
+
       .header-time {
         position: absolute;
         top: 0;
         right: 14px;
         width: 310px;
-        font-family: YouSheBiaoTiHei;
+        color: #05e8fe;
         font-size: 17px;
+        font-family: YouSheBiaoTiHei;
         font-weight: 400;
         line-height: 38px;
-        color: #05e8fe;
         white-space: nowrap;
       }
     }
+
     .dataScreen-main {
       box-sizing: border-box;
       display: flex;
       flex: 1;
       width: 100%;
       padding: 12px 42px 20px;
+
       .dataScreen-lf {
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
+        flex-direction: column;
         width: 394px;
         height: 100%;
         margin-right: 40px;
+
         .dataScreen-top,
         .dataScreen-center,
         .dataScreen-bottom {
@@ -125,16 +138,19 @@
           width: 100%;
           padding-top: 54px;
         }
+
         .dataScreen-top {
           height: 37%;
           background: url("./images/dataScreen-main-lt.png") no-repeat;
           background-size: 100% 100%;
         }
+
         .dataScreen-center {
           height: 30%;
           background: url("./images/dataScreen-main-lc.png") no-repeat;
           background-size: 100% 100%;
         }
+
         .dataScreen-bottom {
           height: 27%;
           margin-bottom: 0;
@@ -142,66 +158,74 @@
           background-size: 100% 100%;
         }
       }
+
       .dataScreen-ct {
         display: flex;
+        justify-content: space-between;
         flex: 1;
         flex-direction: column;
-        justify-content: space-between;
         height: 100%;
         margin-right: 40px;
+
         .dataScreen-map {
           position: relative;
           box-sizing: border-box;
           flex: 1;
           width: 100%;
           margin-top: 78px;
+
           .dataScreen-map-title {
             position: absolute;
             top: 10px;
             left: 0;
             z-index: 99;
-            box-sizing: border-box;
             display: flex;
             align-items: center;
             width: 270px;
             height: 25px;
             padding-left: 30px;
+            color: #fff;
             font-size: 14px;
-            color: #ffffff;
-            letter-spacing: 5px;
             background: url("./images/map-title-bg.png") no-repeat;
             background-size: 100% 100%;
+            box-sizing: border-box;
+            letter-spacing: 5px;
           }
+
           .dataScreen-alarm {
             position: absolute;
             top: 0;
             left: 0;
             z-index: 99;
-            box-sizing: border-box;
+            overflow: hidden;
             width: 100%;
             height: 76px;
             padding: 2px 30px;
-            overflow: hidden;
             background: url("./images/dataScreen-warn-bg.png") no-repeat;
             background-size: 100% 100%;
+            box-sizing: border-box;
+
             .map-item {
               display: flex;
               align-items: center;
               height: 37px;
               cursor: pointer;
+
               img {
                 width: 15px;
                 height: 15px;
                 margin-top: 3px;
                 margin-right: 6px;
               }
+
               span {
-                font-size: 18px;
                 color: rgb(255 183 0 / 74.7%);
+                font-size: 18px;
               }
             }
           }
         }
+
         .dataScreen-cb {
           position: relative;
           box-sizing: border-box;
@@ -212,12 +236,14 @@
           background-size: 100% 100%;
         }
       }
+
       .dataScreen-rg {
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
+        flex-direction: column;
         width: 394px;
         height: 100%;
+
         .dataScreen-top,
         .dataScreen-center,
         .dataScreen-bottom {
@@ -226,16 +252,19 @@
           width: 100%;
           padding-top: 54px;
         }
+
         .dataScreen-top {
           height: 37%;
           background: url("./images/dataScreen-main-rt.png") no-repeat;
           background-size: 100% 100%;
         }
+
         .dataScreen-center {
           height: 30%;
           background: url("./images/dataScreen-main-rc.png") no-repeat;
           background-size: 100% 100%;
         }
+
         .dataScreen-bottom {
           height: 27%;
           margin-bottom: 0;
@@ -243,25 +272,29 @@
           background-size: 100% 100%;
         }
       }
+
       .dataScreen-main-title {
         position: absolute;
         top: 1px;
         left: 0;
         display: flex;
         flex-direction: column;
+
         span {
           margin-bottom: 12px;
-          font-family: YouSheBiaoTiHei;
+          color: #fff;
           font-size: 18px;
+          font-family: YouSheBiaoTiHei;
           line-height: 16px;
-          color: #ffffff;
           letter-spacing: 1px;
         }
+
         img {
           width: 68px;
           height: 7px;
         }
       }
+
       .dataScreen-main-chart {
         width: 100%;
         height: 100%;

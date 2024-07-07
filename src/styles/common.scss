@@ -1,3 +1,4 @@
+/* stylelint-disable CssSyntaxError */
 /* flex */
 .flx-center {
   display: flex;
@@ -96,6 +97,7 @@
 
 /* 外边距、内边距全局样式 */
 @for $i from 0 through 100 {
+  /* stylelint-disable-next-line */
   .mt#{$i} {
     margin-top: #{$i}px !important;
   }

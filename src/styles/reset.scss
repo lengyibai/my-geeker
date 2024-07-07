@@ -81,13 +81,11 @@
 // time,
 // mark,
 // audio,
-// video {
-// 	padding: 0;
-// 	margin: 0;
-// 	font: inherit;
-// 	font-size: 100%;
-// 	vertical-align: baseline;
-// 	border: 0;
+// video {margin
+// 	font: inherit;fontfont
+// 	font-size: 100%;font-sizefont-size
+// 	vertical-align: baseline;vertical-alignvertical-align
+// 	border: 0;borderborder
 // }
 
 // /* HTML5 display-role reset for older browsers */
@@ -102,39 +100,39 @@
 // menu,
 // nav,
 // section {
-// 	display: block;
+// 	display: block;displaydisplay
 // }
-// body {
-// 	padding: 0;
-// 	margin: 0;
+// body {padding
+// 	margin: 0;marginmargin
 // }
 // ol,
 // ul {
-// 	list-style: none;
+// 	list-style: none;list-stylelist-style
 // }
 // blockquote,
 // q {
-// 	quotes: none;
+// 	quotes: none;quotesquotes
 // }
 // blockquote::before,
 // blockquote::after,
 // q::before,
 // q::after {
-// 	content: "";
-// 	content: none;
+// 	content: "";contentcontent
+// 	content: none;contentcontent
 // }
 // table {
-// 	border-spacing: 0;
-// 	border-collapse: collapse;
+// 	border-spacing: 0;border-spacingborder-spacing
+// 	border-collapse: collapse;border-collapseborder-collapse
 // }
+
 html,
 body,
 #app,
 #watermark {
   width: 100%;
   height: 100%;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 /* 解决 h1 标签在 webkit 内核浏览器中文字大小失效问题 */

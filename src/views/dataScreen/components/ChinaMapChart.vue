@@ -206,6 +206,7 @@ const option: ECOption = {
   width: 100%;
   height: 100%;
 }
+
 .map-ball {
   position: absolute;
   top: 50%;
@@ -213,6 +214,7 @@ const option: ECOption = {
   width: 900px;
   height: 900px;
   transform: translate(-50%, -50%);
+
   img {
     width: 500px;
     height: 500px;

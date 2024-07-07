@@ -14,8 +14,8 @@ const changeCollapse = () => globalStore.setGlobalState("isCollapse", !globalSto
 <style scoped lang="scss">
 .collapse-icon {
   margin-right: 20px;
-  font-size: 22px;
   color: var(--el-header-text-color);
+  font-size: 22px;
   cursor: pointer;
 }
 </style>

@@ -37,31 +37,36 @@ const handleClickMenu = (subItem: Menu.MenuOptions) => {
   color: var(--el-menu-hover-text-color) !important;
   background-color: transparent !important;
 }
+
 .el-menu--collapse {
   .is-active {
     .el-sub-menu__title {
-      color: #ffffff !important;
+      color: #fff !important;
       background-color: var(--el-color-primary) !important;
     }
   }
 }
+
 .el-menu-item {
   &:hover {
     color: var(--el-menu-hover-text-color);
   }
+
   &.is-active {
     color: var(--el-menu-active-color) !important;
     background-color: var(--el-menu-active-bg-color) !important;
+
     &::before {
+      content: "";
       position: absolute;
       top: 0;
       bottom: 0;
       width: 4px;
-      content: "";
       background-color: var(--el-color-primary);
     }
   }
 }
+
 .vertical,
 .classic,
 .transverse {
@@ -73,6 +78,7 @@ const handleClickMenu = (subItem: Menu.MenuOptions) => {
     }
   }
 }
+
 .columns {
   .el-menu-item {
     &.is-active {

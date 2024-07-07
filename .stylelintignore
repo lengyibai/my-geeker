@@ -4,3 +4,4 @@ Test
 Temp
 *.html
 node_modules
+src/styles/common.scss

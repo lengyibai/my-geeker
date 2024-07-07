@@ -33,21 +33,24 @@ const username = computed(() => userStore.userInfo.name);
 <style scoped lang="scss">
 .tool-bar-ri {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding-right: 25px;
+
   .header-icon {
     display: flex;
     align-items: center;
+
     & > * {
       margin-left: 21px;
       color: var(--el-header-text-color);
     }
   }
+
   .username {
     margin: 0 20px;
-    font-size: 15px;
     color: var(--el-header-text-color);
+    font-size: 15px;
   }
 }
 </style>

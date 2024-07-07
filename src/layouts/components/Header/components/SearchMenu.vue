@@ -134,52 +134,63 @@ const handleClickMenu = () => {
 .search-menu {
   :deep(.el-dialog) {
     border-radius: 4px;
+
     .el-dialog__header {
       display: none;
     }
   }
+
   .menu-list {
+    overflow: auto;
     max-height: 515px;
     margin-top: 15px;
-    overflow: auto;
+
     .menu-item {
       position: relative;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       height: 45px;
-      padding: 0 20px;
       margin: 10px 0;
-      color: var(--el-text-color-secondary);
-      cursor: pointer;
-      background-color: transparent;
+      padding: 0 20px;
       border: 1px solid var(--el-border-color);
       border-radius: 6px;
+      color: var(--el-text-color-secondary);
+      background-color: transparent;
       transition: all 0.2s ease;
+      cursor: pointer;
+
       .menu-lf {
         display: flex;
         align-items: center;
       }
+
       .menu-icon {
         margin-right: 8px;
         font-size: 16px;
       }
+
       .menu-title {
         font-size: 14px;
       }
+
       .menu-enter {
         font-size: 17px;
       }
     }
+
     .menu-active {
-      color: #ffffff;
+      color: #fff;
       background-color: var(--el-color-primary);
+
       .menu-icon {
         font-size: 18px;
       }
+
       .menu-title {
         font-size: 16px;
       }
+
       .menu-enter {
         font-size: 19px;
       }

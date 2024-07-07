@@ -2,6 +2,7 @@
 .is-error {
   .editor-box {
     border-color: var(--el-color-danger);
+
     .editor-toolbar {
       border-bottom-color: var(--el-color-danger);
     }
@@ -19,9 +20,11 @@
   z-index: 2;
   width: 100%;
   border: 1px solid var(--el-border-color-darker);
+
   .editor-toolbar {
     border-bottom: 1px solid var(--el-border-color-darker);
   }
+
   .editor-content {
     overflow-y: hidden;
   }

@@ -3,8 +3,8 @@ module.exports = {
   plugins: ["stylelint-order"],
   overrides: [
     {
-      files: ["**/*.(less|vue)"],
-      customSyntax: "postcss-less",
+      files: ["**/*.(scss|vue)"],
+      customSyntax: "postcss-scss",
     },
     {
       files: ["**/*.(vue)"],
@@ -12,6 +12,8 @@ module.exports = {
     },
   ],
   rules: {
+    "function-no-unknown": null, //禁止使用未知的函数
+    "no-empty-source": null, //禁止空源文件
     "import-notation": null, //禁止使用@import规则
     "no-invalid-double-slash-comments": null, //禁止使用双斜线注释
     "selector-class-pattern": null, //必须使用中划线命名
