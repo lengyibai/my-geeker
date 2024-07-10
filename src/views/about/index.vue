@@ -82,10 +82,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="about">
-const { pkg, lastBuildTime } = __APP_INFO__;
-const { dependencies, devDependencies, version } = pkg;
-</script>
+<script setup lang="ts" name="about"></script>
 
 <style lang="scss" scoped>
 .card {

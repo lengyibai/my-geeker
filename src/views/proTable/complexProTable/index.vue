@@ -6,7 +6,6 @@
       highlight-current-row
       :columns="columns"
       :request-api="getUserList"
-      :row-class-name="tableRowClassName"
       :span-method="objectSpanMethod"
       :show-summary="true"
       :summary-method="getSummaries"
@@ -30,7 +29,7 @@
       </template>
       <!-- Expand -->
       <template #expand="scope">
-        {{ scope.row }}
+        {{ scope.row.id }}
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
@@ -153,13 +152,6 @@ const objectSpanMethod = ({ rowIndex, columnIndex }: SpanMethodProps) => {
     if (rowIndex % 2 === 0) return { rowspan: 2, colspan: 1 };
     else return { rowspan: 0, colspan: 0 };
   }
-};
-
-// 设置列样式
-const tableRowClassName = ({ rowIndex }: { row: User.ResUserList; rowIndex: number }) => {
-  if (rowIndex === 2) return "warning-row";
-  if (rowIndex === 6) return "success-row";
-  return "";
 };
 
 // 单击行

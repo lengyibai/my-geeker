@@ -38,6 +38,7 @@
           {{ scope.column.label }}
         </el-button>
       </template>
+
       <!-- createTime -->
       <template #createTime="scope">
         <el-button type="primary" link @click="ElMessage.success('我是通过作用域插槽渲染的内容')">
@@ -147,7 +148,6 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
   {
     prop: "username",
     label: "用户姓名",
-    search: { el: "input", tooltip: "我是搜索提示" },
     render: (scope) => {
       return (
         <el-button
@@ -163,12 +163,7 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
   {
     prop: "gender",
     label: "性别",
-    // 字典数据（本地数据）
-    // enum: genderType,
-    // 字典请求不带参数
     enum: getUserGender,
-    // 字典请求携带参数
-    // enum: () => getUserGender({ id: 1 }),
     search: { el: "select", props: { filterable: true } },
     fieldNames: { label: "genderLabel", value: "genderValue" },
   },
