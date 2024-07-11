@@ -1,7 +1,6 @@
 import { Login } from "@/api/interface/index";
 import { PORT1 } from "@/api/config/servicePort";
 import authMenuList from "@/assets/json/authMenuList.json";
-import authButtonList from "@/assets/json/authButtonList.json";
 import http from "@/api";
 
 /**
@@ -19,11 +18,6 @@ export const loginApi = (params: Login.ReqLoginForm) => {
 // 获取菜单列表
 export const getAuthMenuListApi = () => {
   return authMenuList;
-};
-
-// 获取按钮权限
-export const getAuthButtonListApi = () => {
-  return authButtonList;
 };
 
 // 用户退出登录
