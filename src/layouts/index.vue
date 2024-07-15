@@ -14,10 +14,10 @@
 import { computed, reactive, watch, type Component } from "vue";
 
 import ThemeDrawer from "./components/ThemeDrawer/index.vue";
-import LayoutVertical from "./LayoutVertical/index.vue";
-import LayoutClassic from "./LayoutClassic/index.vue";
-import LayoutTransverse from "./LayoutTransverse/index.vue";
-import LayoutColumns from "./LayoutColumns/index.vue";
+import LayoutVertical from "./layoutList/LayoutVertical/index.vue";
+import LayoutClassic from "./layoutList/LayoutClassic/index.vue";
+import LayoutTransverse from "./layoutList/LayoutTransverse/index.vue";
+import LayoutColumns from "./layoutList/LayoutColumns/index.vue";
 
 import { useGlobalStore } from "@/stores/modules/global";
 import { LayoutType } from "@/stores/interface";

@@ -14,8 +14,6 @@ export const useGlobalStore = defineStore({
     assemblySize: "default",
     // 当前系统语言
     language: null,
-    // 当前页面是否全屏
-    maximize: false,
     // 主题颜色
     primary: DEFAULT_PRIMARY,
     // 深色模式

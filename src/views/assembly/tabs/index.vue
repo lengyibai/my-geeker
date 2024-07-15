@@ -10,7 +10,6 @@
     </div>
     <el-space class="mb30">
       <el-button type="primary" :icon="Refresh" @click="refresh"> 刷新当前页 </el-button>
-      <el-button type="primary" :icon="FullScreen" @click="maximize"> 当前页全屏切换 </el-button>
       <el-button type="primary" :icon="FullScreen" @click="closeOnSide('left')">
         关闭左侧标签页
       </el-button>
@@ -83,11 +82,6 @@ const tabsTitle = ref("");
 const editTabsTitle = () => {
   if (!tabsTitle.value) return ElMessage.warning("请输入标题");
   tabStore.setTabsTitle(tabsTitle.value);
-};
-
-// 当前页全屏
-const maximize = () => {
-  globalStore.setGlobalState("maximize", !globalStore.maximize);
 };
 
 // 关闭当前页

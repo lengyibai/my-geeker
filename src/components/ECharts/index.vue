@@ -81,10 +81,10 @@ const resize = () => {
 const debouncedResize = useDebounceFn(resize, 300, { maxWait: 800 });
 
 const globalStore = useGlobalStore();
-const { maximize, isCollapse, tabs, footer } = storeToRefs(globalStore);
+const { isCollapse, tabs, footer } = storeToRefs(globalStore);
 
 watch(
-  () => [maximize, isCollapse, tabs, footer],
+  () => [isCollapse, tabs, footer],
   () => {
     debouncedResize();
   },
